@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="841.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ViewAjoutMedecinController">
+    <stylesheets>
+        <URL value="@/app/css/viewajoutmedecin.css" />
+    </stylesheets>
+    <children>
+        <Pane prefHeight="327.0" prefWidth="540.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="561.0" fitWidth="856.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/4ac654916bb2e0719457e5b11dfb9f12.jpg" />
+                    </image>
+                </ImageView>
+                <Label layoutX="46.0" layoutY="125.0" text="E-mail" />
+                <Label layoutX="287.0" layoutY="125.0" text="Mot de passe" />
+                <Label layoutX="49.0" layoutY="174.0" text="Nom" />
+                <Label layoutX="46.0" layoutY="216.0" text="Adresse" />
+                <Label layoutX="287.0" layoutY="216.0" text="Ville" />
+                <Label layoutX="278.0" layoutY="255.0" text="Numero de téléphone" />
+                <Label layoutX="50.0" layoutY="255.0" text="Sexe" />
+                <Label layoutX="285.0" layoutY="174.0" text="Prenom" />
+                <TextField fx:id="inputEmailMed" layoutX="115.0" layoutY="121.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputNomMed" layoutX="115.0" layoutY="170.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputPrenomMed" layoutX="380.0" layoutY="170.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputAdresseMed" layoutX="115.0" layoutY="212.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputTelMed" layoutX="435.0" layoutY="251.0" prefHeight="25.0" prefWidth="94.0" style="-fx-background-radius: 10 10 10 10;" />
+                <ChoiceBox fx:id="inputSexeMed" layoutX="114.0" layoutY="251.0" prefWidth="150.0" style="-fx-background-radius: 10 10 10 10;" />
+                <Button fx:id="btn_ajoutMed" layoutX="31.0" layoutY="423.0" mnemonicParsing="false" onAction="#AjoutMedecin" prefHeight="43.0" prefWidth="503.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #DA4444;" text="Enregister" />
+                <Text layoutX="46.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Medecin" wrappingWidth="231.8759765625">
+                    <font>
+                        <Font size="26.0" />
+                    </font>
+                </Text>
+                <PasswordField fx:id="inputPasswordMed" layoutX="380.0" layoutY="121.0" style="-fx-background-radius: 10 10 10 10;" />
+                <Label layoutX="37.0" layoutY="306.0" text="Horaire d'ouverture " />
+                <TextField fx:id="inputHoraireOMed" layoutX="164.0" layoutY="302.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 10 10 10 10;" />
+                <Label layoutX="281.0" layoutY="306.0" text="Horaire de fermeture" />
+                <TextField fx:id="inputHoraireFMed" layoutX="435.0" layoutY="302.0" prefHeight="25.0" prefWidth="95.0" style="-fx-background-radius: 10 10 10 10;" />
+                <Label layoutX="37.0" layoutY="340.0" text="Numero de service" />
+                <TextField fx:id="inputNumeroServiceMed" layoutX="165.0" layoutY="336.0" prefHeight="25.0" prefWidth="366.0" style="-fx-background-radius: 10 10 10 10;" />
+                <Label layoutX="41.0" layoutY="387.0" text="Specialité" />
+                <ChoiceBox fx:id="inputSpecialiteMed" layoutX="165.0" layoutY="383.0" prefHeight="25.0" prefWidth="366.0" style="-fx-background-radius: 10 10 10 10;" />
+                <ChoiceBox fx:id="inputVilleMed" layoutX="380.0" layoutY="212.0" prefWidth="150.0" style="-fx-background-radius: 10 10 10 10;" />
+                <Label fx:id="label_erreur_email_med" layoutX="110.0" layoutY="146.0" prefHeight="17.0" prefWidth="159.0" textFill="#d30606" />
+                <Label fx:id="label_erreur_numserv_med" layoutX="168.0" layoutY="361.0" prefHeight="17.0" prefWidth="359.0" textFill="#f50909" />
+                <Label fx:id="lable_erreur_tel_med" alignment="CENTER" contentDisplay="CENTER" layoutX="323.0" layoutY="280.0" prefHeight="17.0" prefWidth="205.0" textFill="#d30606" />
+                <Label fx:id="label_blank_med" layoutX="284.0" layoutY="88.0" prefHeight="17.0" prefWidth="479.0" textFill="#e11313" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

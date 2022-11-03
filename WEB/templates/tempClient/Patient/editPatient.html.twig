@@ -1,0 +1,17 @@
+{% extends 'tempClient/Patient/acceuil.html.twig' %}
+{% block title %}
+{% endblock %}
+{% block content %}
+    <section id="container">
+        <section class="wrapper">
+            <div class="row" style="margin-left: 2%;margin-right: 2%">
+                <table class="table table-striped form-horizontal" style="margin-top: 1%">
+                    <h1>Voici votre profile</h1>
+                    <a href="{{ path('pageAcc') }}"><button class="btn btn-theme start ">Retourner a la l'acceuil</button></a>
+                    {{ include('tempClient/Patient/_delete_formP.html.twig') }}
+                    {{ include('tempClient/Patient/_formEdit.html.twig', {'button_label': 'Modifier votre profil'}) }}
+                </table>
+            </div>
+        </section>
+    </section>
+{% endblock %}

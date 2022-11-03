@@ -1,0 +1,31 @@
+{% extends 'tempClient/Laboratoire/acceuilLab.html.twig' %}
+{% block content %}
+
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                            <div class="col-md-5 col-sm-12">
+                                <div>
+                                    <table class="table center" style="color:black;background-color: white">
+                                        <tr>
+                                            {{ form_start(form,{'attr':{'nonvalidate':'nonvalidate'}}) }}
+                                            <td>{{ form_label(form.services,"services") }}{{ form_errors(form.services)}}</td>
+                                            <td>{{ form_widget(form.services  )}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><button type="submit" class="btn btn-success delete form-control ">Changer Les données</button></td>
+                                            {{ form_end(form) }}
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'tempClient/Laboratoire/acceuilLab.html.twig' %}
+{% block content %}
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                            <h2> Mise a Jour Rendez vous</h2>
+                            <table class="table table-hover" style="background-color: white">
+                                <tr>
+                                    <th class="text-muted">
+                                        patient</p>
+                                    </th>
+                                    <td class="text-center text-muted">
+                                        {{ rdv.patient.prenom ~' '~rdv.patient.nom }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">
+                                        Date</p>
+                                    </th>
+                                    <td class="text-center text-muted">
+                                        {{ rdv.date|date('Y/M/D h:i') }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">
+                                        Dossier
+                                    </th>
+                                    <td class="text-center text-muted">
+                                        {% if dossier != null %}
+                                        <a href="{{ path('showAn',{'id':dossier.id}) }}">
+                                            <button class="btn btn-primary btn-lg">
+                                                <i class="fa fa-files-o"></i>
+                                            </button>
+                                        </a>
+                                        {% else %}
+                                            <a href="{{ path('dossier_lab_newById',{'id_rdv':rdv.id}) }}" id="index">
+                                                <button class="btn btn-success form-control">Créer un Dossier pour ce patient</button>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {{ form_start(form) }}
+                                <tr>
+                                    <th class="text-muted">
+                                        {{ form_label(form.etat, 'etat', { 'label_attr': {'class': 'col-sm-2 col-sm-2 control-label goLeft'} }) }}</p>
+                                    </th>
+                                    <td class="text-center text-muted">
+                                        {{ form_widget(form.etat,{'attr':{'class':'form-control'}}) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" class="text-center text-muted">
+                                        {{ form_widget(form.update,{'attr':{'class':'btn btn-theme02 btn-lg '}}) }}
+                                    </th>
+                                </tr>
+                                {{ form_end(form) }}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block page %}rendezvous{% endblock %}

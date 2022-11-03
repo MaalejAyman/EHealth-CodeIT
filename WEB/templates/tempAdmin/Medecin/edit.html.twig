@@ -1,0 +1,22 @@
+{% extends 'tempAdmin/adminbase.html.twig' %}
+{% block content %}
+    <section id="container">
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row" style="margin-left: 2%;margin-right: 2%">
+                    <table class="table table-striped form-horizontal" style="margin-top: 1%">
+                        {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                        <h1>les details du  Medecin</h1>
+                        <a href="{{ path('medecin_index') }}">Retourner a la liste</a>
+
+                        {{ include('tempAdmin/Medecin/_form.html.twig', {'button_label': 'Modifier ce médecin'}) }}
+
+
+                        {{ include('tempAdmin/Medecin/_delete_form.html.twig') }}
+                    </table>
+                </div>
+            </section>
+        </section>
+    </section>
+{% endblock %}
+

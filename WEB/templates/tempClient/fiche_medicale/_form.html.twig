@@ -1,0 +1,29 @@
+{{ form_start(form,{'attr':{'novalidate':'nonvalidate'}}) }}
+
+<table class="table  " style="color:black;background-color: white;margin-top: 1%; border-radius: 2%">
+
+    <tr>
+        <td> {{ form_label(form.remarque,"Remarque") }}{{ form_errors(form.remarque) }}</td>
+        <td>{{ form_widget(form.remarque,{'attr':{'class':'form-control'}}) }} </td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.description,"Description") }}{{ form_errors(form.description) }}</td>
+        <td>{{ form_widget(form.description,{'attr':{'class':'form-control'}}) }} </td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.maladie,"Maladie") }}{{ form_errors(form.maladie) }}</td>
+        <td>{{ form_widget(form.maladie,{'attr':{'class':'form-control'}}) }} </td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.medicaments,"Medicaments") }}{{ form_errors(form.medicaments) }}</td>
+        <td>{{ form_widget(form.medicaments,{'attr':{'class':'form-control'}}) }} </td>
+    </tr>
+    <tr></tr>
+    <tr style="width: 100%">
+        <td>
+            <button class="btn btn-theme04">{{ button_label|default('Enregistrer') }}</button>
+        </td>
+    </tr>
+</table>
+{{ form_end(form) }}
+

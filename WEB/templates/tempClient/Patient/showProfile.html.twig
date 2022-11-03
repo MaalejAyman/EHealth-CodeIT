@@ -1,0 +1,18 @@
+{% extends 'tempClient/baseP.html.twig' %}
+{% block content %}
+    <section id="container">
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row" style="margin-left: 2%;margin-right: 2%">
+                    <table class="table table-striped form-horizontal" style="margin-top: 1%">
+                        <h1>Voici votre profile</h1>
+
+                        {{ include('Patient/_form.html.twig', {'button_label': 'Modifier votre profil'}) }}
+
+                        {{ include('Patient/_delete_form.html.twig') }}
+                    </table>
+                </div>
+            </section>
+        </section>
+    </section>
+{% endblock %}

@@ -1,0 +1,28 @@
+
+
+
+
+{% extends '/tempClient/Medecin/acceuilMed.html.twig' %}
+
+{% block title %}Creer une Fiche Medicale{% endblock %}
+
+{% block content %}
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                            <h1>Nouvelle Fiche Medicale</h1>
+                            <table class="table table-striped table-advance table-hover"
+                                   style="background-color: white">
+                                {{ include('tempClient/fiche_medicale/_form.html.twig') }}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

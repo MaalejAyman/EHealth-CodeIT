@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit DossierLab</title>
+
+{% block body %}
+    <h1>Edit DossierLab</h1>
+
+    {{ include('dossier_lab/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('dossier_lab_index') }}">back to list</a>
+
+    {{ include('dossier_lab/_delete_form.html.twig') }}
+{% endblock %}

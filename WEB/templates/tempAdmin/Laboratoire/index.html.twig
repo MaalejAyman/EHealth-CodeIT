@@ -1,0 +1,64 @@
+{% extends 'tempAdmin/adminbase.html.twig' %}
+{% block content %}
+    <section id="container">
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row" style="margin-left: 2%;margin-right: 2%">
+                    <h4 style="margin-bottom: 2%"> Liste des Laboratoire </h4>
+                    <table class="table table-hover">
+                        <tr>
+                            <!--<th>Id</th>-->
+                            <th>Email</th>
+                            <!--<th>Roles</th>
+                            <th>Password</th>-->
+                            <th>Adresse</th>
+                            <th>Ville</th>
+                            <th>Tel</th>
+                            <th>Vérifié</th>
+                            <th>Numero de service</th>
+                            <th>Nom</th>
+                            <th>Horaire d'ouverture</th>
+                            <th>Horaire d'ouverture</th>
+                            <th></th>
+                        </tr>
+                        <tbody>
+                        {% for laboratoire in laboratoires %}
+                            <tr>
+                               <!-- <td>{{ laboratoire.id }}</td>-->
+                                <td>{{ laboratoire.email }}</td>
+                                <!--<td>{{ laboratoire.roles ? laboratoire.roles|json_encode : '' }}</td>
+                                   <td>{{ laboratoire.password }}</td>-->
+                                <td>{{ laboratoire.Adresse }}</td>
+                                <td>{{ laboratoire.Ville }}</td>
+                                <td>{{ laboratoire.Tel }}</td>
+                                <td>{{ laboratoire.isVerified ? 'Oui' : 'Non' }}</td>
+                                <td>{{ laboratoire.numService }}</td>
+                                <td>{{ laboratoire.nom }}</td>
+                                <td>{{ laboratoire.horaireDebut ? laboratoire.horaireDebut|date('H:i:s') : '' }}</td>
+                                <td>{{ laboratoire.horaireFin ? laboratoire.horaireFin|date('H:i:s') : '' }}</td>
+                                <td>
+                                   <!--<a href="{{ path('laboratoire_show', {'id': laboratoire.id}) }}">show</a>-->
+                                    <a href="{{ path('laboratoire_editL', {'id': laboratoire.id}) }}"><button class="btn btn-theme start" style="margin-bottom: 3%;width:100%">Modifier le profile</button></a>
+                                    <form method="post" action="{{ path('laboratoire_delete', {'id': laboratoire.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ laboratoire.id) }}">
+                                        <button class="btn btn-theme04 delete">Supprimer le profile</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="13">Pas de Laboratoire</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="navigation" style="align-content: center">
+                        {{ knp_pagination_render(laboratoires) }}
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+
+{% endblock %}

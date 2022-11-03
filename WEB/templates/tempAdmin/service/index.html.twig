@@ -1,0 +1,48 @@
+{% extends 'tempAdmin/adminbase.html.twig' %}
+{% block title %} E-Health{% endblock %}
+{% block content %}
+<section id="container">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row" style="margin-left: 2%;margin-right: 2%">
+                <h4> Liste des specialité disponible </h4>
+                <a href="{{ path('service_new') }}">
+                    <button class="btn btn-theme">Ajouter une nouvelle specialité</button>
+                </a>
+
+
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+
+                        <th>Nom du Service</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for service in services %}
+                        <tr>
+
+                            <td>{{ service.nomService }}</td>
+                            <td>
+
+                                <a href="{{ path('service_edit', {'id': service.id}) }}"><button class="btn btn-theme04 delete">Mettre a jour ce service</button></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Pas de service</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="navigation" style="align-content: center">
+                    {{ knp_pagination_render(services) }}
+                </div>
+            </div>
+        </section>
+    </section>
+</section>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'tempClient/Medecin/acceuilMed.html.twig' %}
+
+{% block title %}Dossier{% endblock %}
+
+{% block content %}
+<section id="home">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="row homeCustom">
+                <div class="caption">
+                    <div class="container">
+                        <h2> Liste des fiches</h2>
+                        <a href="{{ path('fiche_medicale_new',{'id':  dossier.id}) }}">
+                            <button class=" btn btn-theme04  " style="margin-bottom: 2%"> Ajouter une fiche</button>
+                        </a>
+
+
+                        <table class="table table-striped table-advance table-hover"
+                               style="background-color: white ;color: black">
+                            <tr>
+                                <th class="text-center text-muted">Date</th>
+                                <th class="text-center text-muted">Maladie</th>
+                                <th class="text-center text-muted">Medicaments</th>
+                                <th class="text-center text-muted">Description</th>
+
+                            </tr>
+
+                            </thead>
+                            {% for d in dossier.fiche %}
+                            <tbody>
+                            <tr>
+                                <td>{{ d.date|date('Y-M-j') }}</td>
+                                <td>{{ d.maladie }}</td>
+                                <td><ul>{% for m in d.medicaments %}
+                                       <li>{{ m.nom }}</li>
+                                    {% endfor %}
+                                        </ul>
+                                </td>
+                                <td>{{ d.description }}</td>
+                                <td>
+
+                                    <a href="{{ path('fiche_medicale_edit', {'id': d.id}) }}">
+                                        <button class="btn btn-theme02  "> Modifier la fiche medicale</button>
+                                    </a>
+
+                                    <a href="{{ path('fiche_medicale_delete', {'id': d.id}) }}">
+                                        <button class="btn btn-theme04 "> Supprimer cette fiche medicale</button>
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="5">Pas de fiche</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

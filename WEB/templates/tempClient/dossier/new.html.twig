@@ -1,0 +1,25 @@
+{% extends '/tempClient/Medecin/acceuilMed.html.twig' %}
+{% block content %}
+<section id="home">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="row homeCustom">
+                <div class="caption">
+                    <div class="container">
+                        <h2> Nouveau dossier</h2>
+                        <table class="table table-striped table-advance table-hover"
+                               style="background-color: white">
+                            <a href="{{ path('dossier_index') }}">
+                                <button class=" btn btn-theme04 "> retourner a la liste</button>
+                            </a>
+                            {{ include('tempClient/dossier/_form.html.twig') }}
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

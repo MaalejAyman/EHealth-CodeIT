@@ -1,0 +1,42 @@
+{% extends '/tempClient/patient/Acceuil.html.twig' %}
+{% block content %}
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                            <h2> modifier votre  question </h2>
+                            <table class="table table-hover" style="background-color: white">
+
+
+                                {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+
+                            <tr>
+                                <td class="text-center text-muted">{{ form_widget(form.text,{'attr':{'class':'form-control'}}) }} </td>
+
+
+                                <td ><label class="text-center text-muted"> {{ form_label(form.specialite,"Pour un ?",{'attr':{'class':'form-control'}}) }}</label><td>
+                                <td class="text-center text-muted"> {{ form_errors(form.text) }}       </td>
+
+                                <td  class="text-center text-muted">{{ form_widget(form.specialite,{'attr':{'class':'form-control'}}) }} </td>
+                                <td class="text-center text-muted"> {{ form_widget(form.modifier,{'attr':{'class':'form-control'}}) }} </td>
+
+                                {{ form_end(form) }}
+                            </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+{% endblock %}

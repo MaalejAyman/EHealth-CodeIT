@@ -1,0 +1,72 @@
+{% extends 'tempAdmin/adminbase.html.twig' %}
+{% block content %}
+    <section id="container">
+
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row" style="margin-left: 2%;margin-right: 2%">
+                    <h4 style="margin-bottom: 1%"> Liste des docteurs </h4>
+                    <table class="table table-hover" style="margin-right: 2%">
+                        <tr>
+                            <!--<th>Id</th>-->
+                            <th>Email</th>
+                            <!--<th>Roles</th>
+                            <th>Password</th>-->
+                            <th>Adresse</th>
+                            <th>Ville</th>
+                            <th>Tel</th>
+                            <th>Vérifié</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Sexe</th>
+                            <th>Horaire d'ouverture</th>
+                            <th>Horaire de fermeture</th>
+                            <th>Numéro de service</th>
+                            <th>Specialité</th>
+                            <th></th>
+                        </tr>
+                        <tbody>
+                        {% for medecin in medecins %}
+                            <tr>
+                               <!-- <td>{{ medecin.id }}</td>-->
+                                <td>{{ medecin.email }}</td>
+                                <!--   <td>{{ medecin.roles ? medecin.roles|json_encode : '' }}</td>
+                                <td>{{ medecin.password }}</td>-->
+                                <td>{{ medecin.Adresse }}</td>
+                                <td>{{ medecin.Ville }}</td>
+                                <td>{{ medecin.Tel }}</td>
+                                <td>{{ medecin.isVerified ? 'Oui' : 'Non' }}</td>
+                                <td>{{ medecin.nom }}</td>
+                                <td>{{ medecin.prenom }}</td>
+                                <td>{{ medecin.sexe ? 'Female' : 'Male' }}</td>
+                                <td>{{ medecin.horaireDebut ? medecin.horaireDebut|date('H:i:s') : '' }}</td>
+                                <td>{{ medecin.horaireFin ? medecin.horaireFin|date('H:i:s') : '' }}</td>
+                                <td>{{ medecin.numService }}</td>
+                                <td>{{ medecin.specialite }}</td>
+                                <td>
+                                    <a href="{{ path('medecin_editM', {'id': medecin.id}) }}"><button class="btn btn-theme start" style="margin-bottom: 3%;width:100%">Modifier le profile</button></a>
+                                    <form method="post" action="{{ path('medecin_delete', {'id': medecin.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ medecin.id) }}">
+                                        <button class="btn btn-theme04 delete">Supprimer le profile</button>
+                                    </form>
+                                    <!--<a href="{{ path('medecin_show', {'id': medecin.id}) }}">show</a>
+                                    <a href="{{ path('medecin_edit', {'id': medecin.id}) }}">edit</a>-->
+                                </td>
+
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="15">Pas de docteurs</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="navigation" style="align-content: center">
+                        {{ knp_pagination_render(medecins) }}
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+{% endblock %}

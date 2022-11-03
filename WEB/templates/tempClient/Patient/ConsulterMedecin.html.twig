@@ -1,0 +1,83 @@
+{% extends 'tempClient/Patient/acceuil.html.twig' %}
+{% block content %}
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                            <h2> Dr. {{ medecin.nom }}</h2>
+                            <table class="table table-hover " style="background-color: white;">
+                                <tbody>
+                                <tr>
+                                    <th class="text-muted">Nom et prenom :</th>
+                                    <td colspan="2" class="text-center text-muted">
+                                        Dr. {{ medecin.nom~' '~medecin.prenom }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Temp de travail :</th>
+                                    <td colspan="2"
+                                        class="text-center text-muted">{{ medecin.horaireDebut|date('H:i')~' - '~medecin.horaireFin|date('H:i') }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Telephone :</th>
+                                    <td colspan="2" class="text-center text-muted">{{ medecin.tel }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Email :</th>
+                                    <td colspan="2" class="text-center text-muted">{{ medecin.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Adresse :</th>
+                                    <td colspan="2" class="text-center text-muted">{{ medecin.adresse }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Ville :</th>
+                                    <td colspan="2" class="text-center text-muted">{{ medecin.ville }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Sexe :</th>
+                                    <td colspan="2" class="text-center text-muted">
+                                        {% if medecin.sexe == '1' %}
+                                            Femme
+                                        {% else %}
+                                            Homme
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Specialite :</th>
+                                    <td colspan="2" class="text-center text-muted">{{ medecin.specialite.nomSpec }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Evaluation :</th>
+                                    <td colspan="2" class="text-center">
+
+                                        <div class="rating">
+                                            {% for i in 5..1 %}
+                                                {% set starClass = (medecin.note >= i ? "img/Ratings/filled.png" : "img/Ratings/empty.png") %}
+                                            <img src="{{ asset( starClass)}} "/>
+                                            {% endfor %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% if patient.blockedrdv != "1" %}
+                                    <tr>
+                                        <td colspan="3" align="center">
+                                            <a href="{{ path('PrendreRendezVous',{'id':medecin.id}) }}"
+                                               style="text-decoration: none;">
+                                                <button class="btn btn-theme02 btn-lg">Prendre Rendez Vous</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block page %}rech{% endblock %}

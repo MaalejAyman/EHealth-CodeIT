@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ViewAjoutLabController">
+    <stylesheets>
+        <URL value="@/app/css/viewajoutlab.css" />
+    </stylesheets>
+    <children>
+        <Pane prefHeight="558.0" prefWidth="839.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="560.0" fitWidth="839.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/4ac654916bb2e0719457e5b11dfb9f12.jpg" />
+                    </image>
+                </ImageView>
+                <Label layoutX="34.0" layoutY="114.0" text="E-mail" />
+                <Label layoutX="258.0" layoutY="165.0" text="Mot de passe" />
+                <Label layoutX="37.0" layoutY="165.0" text="Nom" />
+                <Label layoutX="29.0" layoutY="207.0" text="Adresse" />
+                <Label layoutX="282.0" layoutY="207.0" text="Ville" />
+                <Label layoutX="258.0" layoutY="246.0" text="Numero de téléphone" />
+                <Label layoutX="32.0" layoutY="346.0" text="Service" />
+                <Label layoutX="27.0" layoutY="292.0" text="Horaire d'ouverture" />
+                <Label layoutX="29.0" layoutY="246.0" text="Numero de service" />
+                <TextField fx:id="inputEmailLab" layoutX="94.0" layoutY="110.0" prefHeight="25.0" prefWidth="407.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputNomLab" layoutX="95.0" layoutY="161.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputNumServiceLab" layoutX="154.0" layoutY="242.0" prefHeight="25.0" prefWidth="89.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputAdresseLab" layoutX="95.0" layoutY="203.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputTelLab" layoutX="411.0" layoutY="242.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputHoraireOLab" layoutX="154.0" layoutY="288.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-radius: 10 10 10 10;" />
+                <Button fx:id="btn_ajoutLab" layoutX="95.0" layoutY="440.0" mnemonicParsing="false" onAction="#AjoutLaboratoire" prefHeight="43.0" prefWidth="406.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #DA4444;" text="Enregister" textFill="#f8f8f8" />
+                <Text layoutX="34.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Laboratoire" wrappingWidth="317.8759765625">
+                    <font>
+                        <Font size="26.0" />
+                    </font>
+                </Text>
+                <PasswordField fx:id="inputPasswordLab" layoutX="354.0" layoutY="161.0" style="-fx-background-radius: 10 10 10 10;" />
+                <Label layoutX="260.0" layoutY="292.0" text="Horaire de fermeture" />
+                <TextField fx:id="inputHoraireFLab" layoutX="411.0" layoutY="288.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-radius: 10 10 10 10;" />
+                <ChoiceBox fx:id="inputVilleLab" layoutX="353.0" layoutY="203.0" prefWidth="150.0" style="-fx-background-radius: 10 10 10 10;" />
+                <ListView fx:id="inputServiceLab" layoutX="94.0" layoutY="332.0" prefHeight="90.0" prefWidth="406.0" style="-fx-background-radius: 10 10 10 10;" />
+                <Label fx:id="label_erreur_email_lab" layoutX="113.0" layoutY="135.0" prefHeight="17.0" prefWidth="324.0" textFill="#d30606" />
+                <Label fx:id="lable_erreur_tel_lab" layoutX="306.0" layoutY="271.0" prefHeight="17.0" prefWidth="194.0" textFill="#d30606" />
+                <Label fx:id="label_erreur_numserv_lab" layoutX="63.0" layoutY="271.0" prefHeight="17.0" prefWidth="182.0" textFill="#d30606" />
+                <Label fx:id="label_blank_lab" layoutX="109.0" layoutY="93.0" prefHeight="17.0" prefWidth="369.0" textFill="#e10e0e" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

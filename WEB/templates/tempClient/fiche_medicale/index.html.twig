@@ -1,0 +1,57 @@
+{% extends 'tempClient/Medecin/acceuilMed.html.twig' %}
+
+{% block title %}FicheMedicale index{% endblock %}
+
+{% block content%}
+
+<section id="home">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="row homeCustom">
+                <div class="caption">
+                    <div class="container">
+                        <h2> Liste des fiches</h2>
+                        <a href="{{ path('fiche_medicale_new',{'id':}) }}">
+                            <button class="btn-theme start "> Creer une fiche </button>
+                        </a>
+
+                        <table class="table table-striped table-advance table-hover"
+                               style="background-color: white">
+                            <tr>
+                                <th class="text-center text-muted">Id</th>
+                                <th class="text-center text-muted">Remarque</th>
+                                <th class="text-center text-muted">Date</th>
+                                <th class="text-center text-muted">Description</th>
+                                <th class="text-center text-muted">actions</th>
+
+                            </tr>
+
+        <tbody>
+        {% for fiche_medicale in fiche_medicales %}
+            <tr>
+                <td>{{ fiche_medicale.id }}</td>
+                <td>{{ fiche_medicale.remarque }}</td>
+                <td>{{ fiche_medicale.date ? fiche_medicale.date|date('Y-m-d') : '' }}</td>
+                <td>{{ fiche_medicale.description }}</td>
+                <td>
+                    <a href="{{ path('fiche_medicale_show', {'id': fiche_medicale.id}) }}"><button class="btn-theme start " >Afficher</button></a>
+                    <a href="{{ path('fiche_medicale_edit', {'id': fiche_medicale.id}) }}"><button class="btn-theme03 " >Modifier</button></a>
+                </td>
+            </tr>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">Pas de Fiche</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+

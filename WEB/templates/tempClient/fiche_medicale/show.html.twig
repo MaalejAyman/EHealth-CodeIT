@@ -1,0 +1,37 @@
+{% extends 'tempClient/Medecin/acceuilMed.html.twig' %}
+
+{% block title %}Fiche Medicale{% endblock %}
+
+{% block content %}
+
+    <h1>FicheMedicale</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ fiche_medicale.id }}</td>
+        </tr>
+        <tr>
+            <th>Remarque</th>
+            <td>{{ fiche_medicale.remarque }}</td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td>{{ fiche_medicale.date ? fiche_medicale.date|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ fiche_medicale.description }}</td>
+        </tr>
+        </tbody>
+
+
+
+    </table>
+    <a href="{{ path('dossier_show',{'id': fiche_medicale.dossier.id}) }}"><button class="btn-theme start " >Retourner a la liste</button></a>
+
+    <a href="{{ path('fiche_medicale_edit', {'id': fiche_medicale.id}) }}"><button class="btn-theme03 " >Modifier</button></a>
+
+    {{ include('tempClient/fiche_medicale/_delete_form.html.twig') }}
+{% endblock %}

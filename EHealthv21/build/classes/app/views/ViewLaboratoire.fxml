@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="771.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab text="Acceuil">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="480.0" fitWidth="778.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/lb.jpg" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="609.0" layoutY="14.0" mnemonicParsing="false" onAction="#logoutLab" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: lightblue; -fx-background-radius: 10;" text="Deconnexion" />
+                  <Label fx:id="text" layoutX="227.0" layoutY="118.0" prefHeight="119.0" prefWidth="611.0" text="Label" textFill="#eeeeee">
+                     <font>
+                        <Font name="Pristina" size="74.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="55.0" layoutY="14.0" prefHeight="119.0" prefWidth="554.0" text="Bienvenu, Laboratoire" textFill="#eeeeee">
+                     <font>
+                        <Font name="Pristina" size="74.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Patients">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="787.0">
+               <children>
+                  <ImageView fitHeight="496.0" fitWidth="783.0" layoutX="-7.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/light-blue.jpg" />
+                     </image>
+                  </ImageView>
+                  <TableView fx:id="table_lab" layoutX="48.0" layoutY="109.0" prefHeight="312.0" prefWidth="469.0" style="-fx-background-radius: 5; -fx-background-color: #b3e5fc;">
+                     <columns>
+                        <TableColumn fx:id="id" prefWidth="167.0" style="-fx-background-color: #9addfb;" text="Numero du dossier sur PC" />
+                        <TableColumn fx:id="patient" prefWidth="149.0" style="-fx-background-color: #9addfb;" text="Nom patient" />
+                        <TableColumn fx:id="patientpre" prefWidth="152.0" style="-fx-background-color: #9addfb;" text="Prenom patient" />
+                     </columns>
+                  </TableView>
+                  <Button layoutX="574.0" layoutY="225.0" mnemonicParsing="false" onAction="#move" prefHeight="25.0" prefWidth="149.0" style="-fx-background-radius: 10; -fx-background-color: #fa4a56;" text="Consulter le Dossier" textFill="WHITE" />
+                  <Button layoutX="572.0" layoutY="374.0" mnemonicParsing="false" onAction="#createDossierLab" style="-fx-background-radius: 10; -fx-background-color: #fa4a56;" text="Créer un nouveau Dossier" textFill="WHITE" />
+                  <Label layoutX="90.0" layoutY="52.0" text="Liste des Patients">
+                     <font>
+                        <Font name="Bell MT" size="25.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="listPatients" layoutX="574.0" layoutY="321.0" prefWidth="150.0" style="-fx-background-radius: 10;" />
+                  <Button layoutX="574.0" layoutY="171.0" mnemonicParsing="false" onAction="#createFolder" prefHeight="25.0" prefWidth="149.0" style="-fx-background-radius: 10; -fx-background-color: #fa4a56;" text="Créer Dossier sur PC" textFill="WHITE" />
+                  <Label layoutX="591.0" layoutY="137.0" text="Gestion de Dossier">
+                     <font>
+                        <Font name="Bell MT" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="588.0" layoutY="285.0" text="Création de Dossier">
+                     <font>
+                        <Font name="Bell MT" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Profil">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="490.0" fitWidth="791.0" layoutX="-6.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/light-blue.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="edithf" layoutX="500.0" layoutY="225.0" style="-fx-background-radius: 10;" />
+                  <TextField fx:id="editadresse" layoutX="151.0" layoutY="225.0" style="-fx-background-radius: 10;" />
+                  <TextField fx:id="edittel" layoutX="151.0" layoutY="296.0" style="-fx-background-radius: 10;" />
+                  <TextField fx:id="edithd" layoutX="500.0" layoutY="151.0" style="-fx-background-radius: 10;" />
+                  <Label layoutX="54.0" layoutY="229.0" text="Adresse" />
+                  <Label layoutX="64.0" layoutY="155.0" text="Ville" />
+                  <Label layoutX="47.0" layoutY="300.0" prefWidth="56.0" text="Téléphone" />
+                  <Label layoutX="393.0" layoutY="155.0" text="Horraire début" />
+                  <Label layoutX="402.0" layoutY="229.0" text="Horraire fin" />
+                  <Button layoutX="234.0" layoutY="427.0" mnemonicParsing="false" onAction="#editLab" prefHeight="33.0" prefWidth="319.0" style="-fx-background-radius: 10; -fx-background-color: #fa4a56;" text="Enregistrer" textFill="WHITE" />
+                  <Label layoutX="102.0" layoutY="48.0" text="Données du Laboratoire">
+                     <font>
+                        <Font name="Bell MT" size="25.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="listville" layoutX="150.0" layoutY="151.0" prefWidth="150.0" style="-fx-background-radius: 10;" />
+                  <Label layoutX="411.0" layoutY="300.0" text="Services" />
+                  <ListView fx:id="editService" layoutX="497.0" layoutY="279.0" prefHeight="138.0" prefWidth="155.0" style="-fx-background-radius: 10;" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>

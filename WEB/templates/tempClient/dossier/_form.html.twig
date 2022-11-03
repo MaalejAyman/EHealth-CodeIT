@@ -1,0 +1,12 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+<table class="table center" style="color:black;background-color: white">
+    <td>{{ form_label(form.patient,"Patient") }}{{ form_errors(form.patient) }}</td>
+    <td>{{ form_widget(form.patient,{'attr':{'class':'form-control'}}) }} </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button type="submit" class="btn btn-success delete form-control ">creer un dossier</button>
+        </td>
+    </tr>
+</table>
+{{ form_end(form) }}

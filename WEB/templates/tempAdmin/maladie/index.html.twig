@@ -1,0 +1,46 @@
+{% extends 'tempAdmin/adminbase.html.twig' %}
+{% block title %} E-Health{% endblock %}
+{% block content %}
+    <section id="container">
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row" style="margin-left: 2%;margin-right: 2%">
+                    <h4> Liste des maladies </h4>
+                    <a href="{{ path('maladie_new') }}">
+                        <button class="btn btn-theme">Ajouter une nouvelle maladie</button>
+                    </a>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for maladie in maladies %}
+                            <tr>
+
+                                <td>{{ maladie.nom }}</td>
+                                <td>
+
+                                    <a href="{{ path('maladie_edit', {'id': maladie.id}) }}">
+                                        <button class="btn btn-theme04 delete">Mettre a jour cette maladie</button>
+                                    </a>
+
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="3">pas de maladie</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="navigation" style="align-content: center">
+                    {{ knp_pagination_render(maladies) }}
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+{% endblock %}

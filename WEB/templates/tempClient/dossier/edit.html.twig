@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit Dossier</title>
+
+{% block body %}
+    <h1>Edit Dossier</h1>
+
+    {{ include('tempClient/dossier/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('dossier_index') }}">back to list</a>
+
+    {{ include('tempClient/dossier/_delete_form.html.twig') }}
+{% endblock %}

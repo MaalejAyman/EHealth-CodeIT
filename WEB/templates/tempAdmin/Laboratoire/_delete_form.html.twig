@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('laboratoire_delete', {'id': Laboratoire.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ Laboratoire.id) }}">
+    <button class="btn btn-theme04 delete" style="margin-left: 3%">Supprimer votre compte</button>
+</form>

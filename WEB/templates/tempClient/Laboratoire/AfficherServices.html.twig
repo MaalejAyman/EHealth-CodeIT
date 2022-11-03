@@ -1,0 +1,38 @@
+{% extends 'tempClient/Laboratoire/acceuilLab.html.twig' %}
+{% block content %}
+
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                                <div class="col-md-3 col-sm-12 center-block">
+                                    <div class="col-md-7 col-sm-12 center-block">
+                                        <li>
+                                            <a href="{{ path('updateServices') }}" id="index">
+                                                <button  class="btn btn-success form-control">Affecter Service</button>
+                                            </a>
+                                        </li>
+                                    </div>
+                                    <table class="table center" style="color:black;background-color: white">
+                                        <thead>
+                                        <tr>
+                                            <th> Services</th>
+                                        </tr>
+                                        </thead>
+                                        {% for i  in Laboratoire.services %}
+                                            <tr>
+                                                <td> {{ i.nomService }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

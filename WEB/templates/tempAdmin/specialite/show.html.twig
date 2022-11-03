@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<title>Specialite</title>
+
+{% block body %}
+    <h1>Specialite</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ specialite.id }}</td>
+            </tr>
+            <tr>
+                <th>NomSpec</th>
+                <td>{{ specialite.nomSpec }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('specialite_index') }}">back to list</a>
+
+    <a href="{{ path('specialite_edit', {'id': specialite.id}) }}">edit</a>
+
+    {{ include('tempAdmin/specialite/_delete_form.html.twig') }}
+{% endblock %}

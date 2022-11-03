@@ -1,0 +1,91 @@
+{% extends 'tempAdmin/base.html.twig' %}
+{% block top_menu %}
+    <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+            <li><a class="btn btn-theme04 logout" href="{{ path('app_logout') }}">Deconnexion</a></li>
+        </ul>
+        <ul class="nav pull-right top-menu">
+            <li><a href="{{ path('patient_new') }}" class="logout">Créer un patient </a></li>
+        </ul>
+        <ul class="nav pull-right top-menu">
+            <li><a href="{{ path('medecin_new') }}" class="logout">Créer un Docteur </a></li>
+        </ul>
+        <ul class="nav pull-right top-menu">
+            <li><a href="{{ path('laboratoire_new') }}" class="logout">Créer un Laboratoire </a></li>
+        </ul>
+
+    </div>
+{% endblock %}
+{% block sidebar %}
+
+    <li class="sub-menu">
+        <a href="{{ path('acceuil') }}" id="index">
+            <i class="fa fa-dashboard"></i>
+            <span>Acceuil</span>
+        </a>
+    </li>
+    <li class="sub-menu">
+        <a href="{{ path('patient_index') }}">
+            <i class="fa fa-desktop"></i>
+            <span>Patients</span>
+        </a>
+    </li>
+    <li class="sub-menu">
+        <a href="{{ path('laboratoire_index') }}">
+            <i class="fa fa-cogs"></i>
+            <span>Laboratoires</span>
+        </a>
+    </li>
+    <li class="sub-menu">
+        <a href="{{ path('medecin_index') }}">
+            <i class="fa fa-book"></i>
+            <span>Docteurs</span>
+        </a>
+    </li>
+    <li class="sub-menu">
+        <a href="{{ path('specialite_index') }}">
+            <i class="fa fa-cogs"></i>
+            <span>Specialités</span>
+        </a>
+    </li>
+    <li class="sub-menu">
+        <a href="{{ path('service_index') }}">
+            <i class="fa fa-desktop"></i>
+            <span>Services</span>
+        </a>
+    </li>
+    <li class="sub-menu">
+        <a href="{{ path('medicament_index') }}">
+            <i class="fa fa-book"></i>
+            <span>Medicaments</span>
+        </a>
+    </li>
+    <li class="sub-menu">
+        <a href="{{ path('maladie_index') }}">
+            <i class="fa fa-address-book"></i>
+            <span>Maladies</span>
+        </a>
+    </li>
+
+    </ul>
+    </div>
+{% endblock %}
+{% block script_sidebar %}
+    <script>
+        var Ids = ["index", "rendezvous", "rech", "PoseQuest", "MesQuest", "edit"];
+        Ids.forEach(myFunction)
+
+        function myFunction(item, index) {
+            if (item == '{{ block('page') }}') {
+                document.getElementById(item).classList.add("active");
+            } else {
+                document.getElementById(item).classList.remove("active");
+            }
+        }
+    </script>
+{% endblock %}
+{% block content %}
+    {{ block('content') }}
+{% endblock %}
+{% block page %}
+{% endblock %}

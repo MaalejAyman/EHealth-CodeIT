@@ -1,0 +1,59 @@
+{% extends '/tempClient/Medecin/acceuilMed.html.twig' %}
+{% block content %}
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+
+                            <h2> Tous les reponses </h2>
+
+                            <table class="table table-striped table-advance table-hover"
+                                   style="background-color: white ;border-radius: 2%">
+                                <tr>
+                                    <th class="text-center text-muted">Question</th>
+                                    <th class="text-center text-muted">Reponses</th>
+                                    <th class="text-center text-muted"></th>
+                                </tr>
+                                {% for i in reponses %}
+                                    <tr>
+
+                                        <td class="text-center text-muted"> {{ question.text }}</td>
+                                        <td class="text-center text-muted"> {{ i.text }} </td>
+
+                                        <td>
+                                            {% if i.medecin.id == app.user.id %}
+
+                                                <a href="{{ path('modifierReponse',{'id':i.id}) }}">
+                                                    <button class="btn btn-success btn-xs">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                    </buton>
+                                                </a>
+                                                <a href="{{ path('supprimerReponse',{'id':i.id}) }}">
+                                                    <button class="btn btn-danger btn-xs">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </button>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+
+
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="15" style="color:black">Pas de reponses</td>
+                                    </tr>
+                                {% endfor %}
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

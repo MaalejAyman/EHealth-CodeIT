@@ -1,0 +1,63 @@
+<table class="table  form-horizontal" style="margin-top: 1%">
+    {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+    <tr>
+        <td>{{ form_label(form.email,"E-Mail") }}</td>
+        <td> {{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}</td>
+    </tr>
+    <td>{{ form_errors(form.email) }}</td>
+    <tr>
+        <td>{{ form_label(form.nom,"Nom") }}</td>
+        <td>{{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}</td>
+    </tr>
+    <td>{{ form_errors(form.nom) }}</td>
+    <tr>
+        <td>{{ form_label(form.prenom,"Prenom") }}</td>
+        <td>{{ form_widget(form.prenom,{'attr':{'class':'form-control'}}) }}</td>
+    </tr>
+    <td>{{ form_errors(form.prenom) }}</td>
+    <tr>
+        <td>{{ form_label(form.sexe,"Sexe") }}</td>
+        <td>{{ form_widget(form.sexe,{'attr':{'class':'form-control'}}) }}</td>
+    </tr>
+    <td>{{ form_errors(form.sexe) }}</td>
+    <tr>
+        <td>{{ form_label(form.num_service,"Numero de service") }}</td>
+        <td>{{ form_widget(form.num_service,{'attr':{'class':'form-control'}}) }}</td>
+    </tr>
+    <td>{{ form_errors(form.num_service) }}</td>
+    <tr>
+        <td>{{ form_label(form.horaire_debut,"Horaire d'ouverture") }}</td>
+        <td>{{ form_widget(form.horaire_debut,{'attr':{'class':'form-control'}}) }}</td>
+    </tr>
+    <td>{{ form_errors(form.horaire_debut) }}</td>
+    <tr>
+        <td>{{ form_label(form.horaire_fin,"Horaire de fermeture") }}</td>
+        <td>{{ form_widget(form.horaire_fin,{'attr':{'class':'form-control'}}) }}</td>
+    </tr>
+    <td>{{ form_errors(form.horaire_fin) }}</td>
+    <tr>
+        <td>{{ form_label(form.Tel,"Telephone") }}</td>
+        <td>{{ form_widget(form.Tel,{'attr':{'class':'form-control'}}) }}</td>
+    </tr>
+    <td>{{ form_errors(form.Tel) }}</td>
+    <tr>
+        <td>{{ form_label(form.Adresse,"Adresse") }}</td>
+        <td>{{ form_widget(form.Adresse,{'attr':{'class':'form-control'}}) }}</td>
+    </tr>
+    <td>{{ form_errors(form.Adresse) }}</td>
+    <tr>
+        <td>{{ form_label(form.Ville,"Ville") }}</td>
+        <td>{{ form_widget(form.Ville,{'attr':{'class':'form-control'}}) }}</td>
+    </tr>
+    <td>{{ form_errors(form.Ville) }}</td>
+    <tr>
+        <td>{{ form_label(form.specialite,"Specialite") }}</td>
+        <td>{{ form_widget(form.specialite,{'attr':{'class':'form-control'}}) }}</td>
+    </tr>
+    <td>{{ form_errors(form.specialite) }}</td>
+    <tr>
+        <td >
+            <button class="btn btn-theme04 delete ">{{ button_label|default('Enregistrer') }}</button>
+        </td>
+    </tr>
+    {{ form_end(form) }}

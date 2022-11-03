@@ -1,0 +1,20 @@
+{% extends 'tempAdmin/adminbase.html.twig' %}
+
+{% block content %}
+    <section id="container">
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row" style="margin-left: 2%;margin-right: 2%">
+
+                    <table class="table form-horizontal" style="margin-top: 1%">
+                        <title>New Specialite</title>
+                        <h1>Creer une specialité</h1>
+                        <a href="{{ path('specialite_index') }}" style="float: left"><button class="btn btn-theme start "> Retourner a la liste</button></a>
+
+                        {{ include('tempAdmin/specialite/_form.html.twig') }}
+                    </table>
+                </div>
+            </section>
+        </section>
+    </section>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'tempClient/Patient/acceuil.html.twig' %}
+{% block content %}
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                            <h2> Mes Rendez Vous</h2>
+                            {% if rendezvous %}
+                                <table class="table table-striped table-advance table-hover"
+                                       style="background-color: white">
+                                    <tr>
+                                        <th class="text-center text-muted">date rdv</th>
+                                        <th class="text-center text-muted">heure rdv</th>
+                                        <th class="text-center text-muted">patient</th>
+                                        <th class="text-center text-muted">medecin / laboratoire</th>
+                                        <th class="text-center text-muted">etat</th>
+                                        <th class="text-center text-muted"></th>
+                                    </tr>
+                                    {% for rdv in rendezvous %}
+                                        <tr>
+                                            <td class="hidden-phone text-center text-muted">{{ rdv.date|date('Y-m-d') }}</td>
+                                            <td class="hidden-phone text-center text-muted">{{ rdv.heure|date('H:i') }}</td>
+                                            <td class="hidden-phone text-center text-muted">{{ rdv.patient.nom~' '~rdv.patient.prenom }}</td>
+                                            {% if rdv.medecin %}
+                                                <td class="hidden-phone text-center text-muted">{{ rdv.medecin.nom~' '~rdv.medecin.prenom }}</td>
+                                            {% elseif rdv.laboratoire %}
+                                                <td class="hidden-phone text-center text-muted">{{ rdv.laboratoire.nom }}</td>
+                                            {% else %}
+                                                <td class="hidden-phone text-center text-muted">erreur</td>
+                                            {% endif %}
+                                            {% if rdv.etat == 'confirmé' %}
+                                                <td class="hidden-phone text-center text-muted"><span
+                                                            class="label label-success label-mini ">{{ rdv.etat }}</span>
+                                                </td>
+                                            {% elseif rdv.etat == 'effectué' %}
+                                                <td class="hidden-phone text-center text-muted"><span
+                                                            class="label label-primary label-mini">{{ rdv.etat }}</span>
+                                                </td>
+                                            {% endif %}
+                                            <td class="hidden-phone text-center text-muted">
+                                                {% if rdv.etat == 'confirmé' %}
+                                                    <a onclick="modal.style.display = 'block';">
+                                                        <button class="btn btn-danger btn-xs">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </button>
+                                                    </a>
+                                                    <div id="myModal" class="modal">
+                                                        <div class="modal-content">
+                                                            <span class="close">&times;</span>
+                                                            <h2> Annuler Rendez vous</h2>
+                                                            <p>Voulez vraiment annuler ce rendezVous?</p>
+                                                            <p style="color:red">(Vous avez {{ 5 - rdv.patient.nbAlert }}
+                                                                annulations possible avant etre bloqué)</p>
+                                                            <a href="{{ path('AnnulerRendezVous',{'id':rdv.id}) }}">
+                                                                <button>Oui Annuler comme meme !!</button>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                                {% if rdv.etat == 'effectué' %}
+                                                    <div class="rating">
+                                                        {% for i in 5..1 %}
+                                                            {% if i > rdv.evaluation %}
+                                                                <a href="{{ path('mettreevaluation',{'id':i,'id_rdv':rdv.id}) }}"
+                                                                   title="Donner {{ i }} étoiles">☆</a>
+                                                            {% else %}
+                                                                <a href="{{ path('mettreevaluation',{'id':i,'id_rdv':rdv.id}) }}"
+                                                                   title="Donner {{ i }} étoiles" id="pressed">☆</a>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                                <div class="navigation" style="align-content: center">
+                                    {{ knp_pagination_render(rendezvous) }}
+                                </div>
+                            {% else %}
+                                <h3>aucun rendez-vous</h3>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let modal = document.getElementById("myModal");
+        let span = document.getElementsByClassName("close")[0];
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+    </script>
+{% endblock %}
+{% block page %}rendezvous{% endblock %}

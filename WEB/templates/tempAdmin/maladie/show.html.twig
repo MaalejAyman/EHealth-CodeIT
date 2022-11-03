@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<title>Maladie</title>
+
+{% block body %}
+    <h1>Maladie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ maladie.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ maladie.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('maladie_index') }}">back to list</a>
+
+    <a href="{{ path('maladie_edit', {'id': maladie.id}) }}">edit</a>
+
+    {{ include('tempAdmin/maladie/_delete_form.html.twig') }}
+{% endblock %}

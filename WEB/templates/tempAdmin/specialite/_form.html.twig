@@ -1,0 +1,15 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+<table class="table  form-horizontal" style="margin-top: 1%">
+    <tr>
+        <td>{{ form_label(form.nomSpec,"Nom de specialité") }}</td>
+        <td>{{ form_errors(form.nomSpec) }}</td>
+        <td> {{ form_widget(form.nomSpec,{'attr':{'class':'form-control'}}) }}</td>
+        <td><button class="btn btn-theme04 delete ">{{ button_label|default('Save') }}</button></td>
+
+    </tr>
+
+</table>
+{{ form_end(form) }}
+
+
+

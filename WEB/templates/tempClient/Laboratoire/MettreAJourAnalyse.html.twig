@@ -1,0 +1,31 @@
+{% extends 'tempClient/Laboratoire/acceuilLab.html.twig' %}
+{% block content %}
+
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                            {{ form_start(form,{'attr':{'nonvalidate':'nonvalidate'}}) }}
+                            <table class="table  " style="color:black;background-color: white;margin-top: 1%">
+                                <tr><h1>Mettre a jour une analyse</h1></tr>
+                                <tr>
+
+                                    <td> {{ form_label(form.description,"Description") }}{{ form_errors(form.description) }}</td>
+                                    <td>{{ form_widget(form.description,{'attr':{'class':'form-control'}}) }} </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-lg-10 center"
+                                        colspan="2">{{ form_widget(form.changer,{'attr':{'class':'btn btn-warning form-control'}}) }} </td>
+                                </tr>
+                            </table>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

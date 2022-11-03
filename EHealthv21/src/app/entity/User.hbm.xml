@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 avr. 2021 00:12:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="ehealthv2" name="app.entity.User" optimistic-lock="version" table="user">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="email" type="string">
+      <column length="180" name="email" not-null="true" unique="true"/>
+    </property>
+    <property name="roles" type="serializable">
+      <column name="roles" not-null="true"/>
+    </property>
+    <property name="password" type="string">
+      <column name="password" not-null="true"/>
+    </property>
+    <property name="adresse" type="string">
+      <column name="adresse" not-null="true"/>
+    </property>
+    <property name="ville" type="string">
+      <column name="ville" not-null="true"/>
+    </property>
+    <property name="tel" type="int">
+      <column name="tel" not-null="true"/>
+    </property>
+    <property name="isVerified" type="boolean">
+      <column name="is_verified" not-null="true"/>
+    </property>
+    <property name="type" type="string">
+      <column name="Type" not-null="true"/>
+    </property>
+    <one-to-one class="app.entity.Medecin" name="medecin"/>
+    <one-to-one class="app.entity.Patient" name="patient"/>
+    <set fetch="select" inverse="true" lazy="true" name="resetPasswordRequests" table="reset_password_request">
+      <key>
+        <column name="user_id" not-null="true"/>
+      </key>
+      <one-to-many class="app.entity.ResetPasswordRequest"/>
+    </set>
+    <one-to-one class="app.entity.Laboratoire" name="laboratoire"/>
+  </class>
+</hibernate-mapping>

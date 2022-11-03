@@ -1,0 +1,52 @@
+{% extends 'tempClient/Laboratoire/acceuilLab.html.twig' %}
+{% block content %}
+
+    <section id="container">
+        <section class="wrapper">
+            <div class="row" style="margin-left: 2%;margin-right: 2%">
+                <h2>Modifier votre profil</h2>
+                <table class="table table-striped form-horizontal" style="margin-top: 1%">
+                    {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                    <table class="table center" style="color:black;background-color: white">
+                        <tr>
+                            <th> {{ form_label(form.email,"Email") }} {{ form_errors(form.email) }}</th>
+                            <td class="col-lg-10">{{ form_widget(form.email,{'attr':{'class':'form-control'}}) }} </td>
+                        </tr>
+                        <tr>
+                            <th> {{ form_label(form.Tel,"Tel") }} {{ form_errors(form.Tel) }}</th>
+                            <td class="col-lg-10">{{ form_widget(form.Tel,{'attr':{'class':'form-control'}}) }} </td>
+                        </tr>
+                        <tr>
+                            <th> {{ form_label(form.Adresse,"Adresse") }} {{ form_errors(form.Adresse) }}</th>
+                            <td class="col-lg-10">{{ form_widget(form.Adresse,{'attr':{'class':'form-control'}}) }} </td>
+                        </tr>
+                        <tr>
+                            <th> {{ form_label(form.Ville,"Ville") }} {{ form_errors(form.Ville) }}</th>
+                            <td class="col-lg-10">{{ form_widget(form.Ville,{'attr':{'class':'form-control'}}) }} </td>
+                        </tr>
+                        <tr>
+                            <th> {{ form_label(form.horaire_debut,"Horaire d'ouverture") }}  {{ form_errors(form.horaire_debut) }} </th>
+                            <td class="col-lg-10">{{ form_widget(form.horaire_debut,{'attr':{'class':'form-control'}}) }} </td>
+                        </tr>
+                        <tr>
+                            <th> {{ form_label(form.horaire_fin,"Horaire de fermeture") }} {{ form_errors(form.horaire_fin) }}</th>
+                            <td class="col-lg-10">{{ form_widget(form.horaire_fin,{'attr':{'class':'form-control'}}) }} </td>
+                        </tr>
+                        <tr>
+                            <th> {{ form_label(form.services,"Services") }} {{ form_errors(form.services) }}</th>
+                            <td class="col-lg-10">{{ form_widget(form.services,{'attr':{'class':'form-control'}}) }} </td>
+                        </tr>
+                        <tr>
+
+                            <td class="col-lg-10 center" colspan="2">
+                                <button class="btn btn-warning form-control">Changer Les données</button>
+                            </td>
+                        </tr>
+                        {{ form_end(form) }}
+
+                    </table>
+                </table>
+            </div>
+        </section>
+    </section>
+{% endblock %}

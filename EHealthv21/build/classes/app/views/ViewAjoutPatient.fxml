@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ViewAjoutPatientController">
+    <center>
+        <Pane prefHeight="533.0" prefWidth="823.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="564.0" fitWidth="847.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/4ac654916bb2e0719457e5b11dfb9f12.jpg" />
+                    </image>
+                </ImageView>
+                <Label layoutX="29.0" layoutY="122.0" text="E-mail" />
+                <Label layoutX="28.0" layoutY="169.0" text="Mot de passe" />
+                <Label layoutX="28.0" layoutY="208.0" text="Nom" />
+                <Label layoutX="28.0" layoutY="246.0" text="Adresse" />
+                <Label layoutX="254.0" layoutY="246.0" text="Ville" />
+                <Label layoutX="254.0" layoutY="297.0" prefHeight="17.0" prefWidth="123.0" text="Numero de téléphone" />
+                <Label layoutX="26.0" layoutY="297.0" text="Sexe" />
+                <Label layoutX="28.0" layoutY="352.0" text="CIN" />
+                <Label layoutX="245.0" layoutY="204.0" text="Prenom" />
+                <TextField fx:id="inputEmail" layoutX="117.0" layoutY="118.0" prefHeight="25.0" prefWidth="369.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputNom" layoutX="117.0" layoutY="204.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputPrenom" layoutX="322.0" layoutY="204.0" prefHeight="25.0" prefWidth="165.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputAdresse" layoutX="116.0" layoutY="242.0" prefHeight="25.0" prefWidth="114.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputTel" layoutX="389.0" layoutY="293.0" prefHeight="25.0" prefWidth="102.0" style="-fx-background-radius: 10 10 10 10;" />
+                <TextField fx:id="inputCin" layoutX="114.0" layoutY="348.0" prefHeight="25.0" prefWidth="378.0" style="-fx-background-radius: 10 10 10 10;" />
+                <ChoiceBox fx:id="inputSexe" layoutX="115.0" layoutY="293.0" prefHeight="25.0" prefWidth="116.0" style="-fx-background-radius: 10 10 10 10;" />
+                <Button fx:id="btn_ajoutPatient" layoutX="115.0" layoutY="396.0" mnemonicParsing="false" onAction="#AjoutPatient" prefHeight="43.0" prefWidth="377.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #DA4444;" text="Enregister" textFill="#f5f3f3" />
+                <Text fx:id="label" layoutX="54.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Patient" wrappingWidth="319.8759765625">
+                    <font>
+                        <Font size="26.0" />
+                    </font>
+                </Text>
+                <PasswordField fx:id="inputPassword" layoutX="117.0" layoutY="165.0" prefHeight="25.0" prefWidth="369.0" style="-fx-background-radius: 10 10 10 10;" />
+                <ChoiceBox fx:id="inputVille" layoutX="322.0" layoutY="242.0" prefHeight="25.0" prefWidth="167.0" style="-fx-background-radius: 10 10 10 10;" />
+                <Label fx:id="label_erreur_cin" layoutX="117.0" layoutY="379.0" prefHeight="17.0" prefWidth="368.0" textFill="#ff0808" />
+                <Label fx:id="lable_erreur_tel" layoutX="290.0" layoutY="318.0" prefHeight="17.0" prefWidth="202.0" textFill="#ff0202" />
+                <Label fx:id="label_erreur_email" layoutX="141.0" layoutY="143.0" prefHeight="17.0" prefWidth="208.0" textFill="#ff0707" />
+                <Label fx:id="label_blank_patient" layoutX="19.0" layoutY="83.0" prefHeight="17.0" prefWidth="539.0" textFill="RED" />
+            </children>
+        </Pane>
+    </center>
+</BorderPane>

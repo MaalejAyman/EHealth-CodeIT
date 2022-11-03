@@ -1,0 +1,12 @@
+<form method="post"  action="{{ path('patient_deleteP', {'id': Patient.id}) }}" onsubmit="return confirm('voulez vous vraiment supprimer votre compte?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ Patient.id) }}">
+    <button class="btn btn-theme04 delete" style="margin-left: 3%">Supprimer votre compte</button>
+</form>
+
+
+
+
+
+
+

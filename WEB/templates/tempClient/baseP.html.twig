@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}E-Health{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="{{ asset('css1/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css1/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css1/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css1/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css1/style.css') }}">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}"
+          rel="stylesheet">
+    <link href="{{ asset('css/zabuto_calendar.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('lib/gritter/css/jquery.gritter.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <script src="{{ asset('lib/chart-master/Chart.js') }}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('lib/jquery/jquery.min.js') }} "></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css"
+          integrity="sha256-ejA/z0dc7D+StbJL/0HAnRG/Xae3yS2gzg0OAnIURC4=" crossorigin="anonymous">
+
+
+</head>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+{% block body %}
+    <section class="preloader">
+        <div class="spinner">
+            <span class="spinner-rotate"></span>
+        </div>
+    </section>
+    {{ block('top_menu') }}
+
+
+    {{ block('content') }}
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+
+                </div>
+                <div class="col-md-4 col-sm-6">
+
+                </div>
+                <div class="col-md-4 col-sm-12">
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- SCRIPTS -->
+    <script src="{{ asset('js1/jquery.js') }}"></script>
+    <script src="{{ asset('js1/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js1/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js1/smoothscroll.js') }}"></script>
+    <script src="{{ asset('js1/custom.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.js"
+            integrity="sha256-IrEwgwFBWa3kUOm8+TXmylcQ4oUJn58Iy5V7K39TnT0=" crossorigin="anonymous"></script>
+{% endblock %}
+
+</body>
+</html>

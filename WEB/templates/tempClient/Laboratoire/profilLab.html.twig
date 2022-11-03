@@ -1,0 +1,44 @@
+{% extends 'tempClient/Laboratoire/acceuilLab.html.twig' %}
+{% block content %}
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                            <div class="col-md-5 col-sm-12 center-block">
+                                <table class="table center" style="color:black;background-color: white" >
+                                    <thead>
+                                    <tr>
+                                        <td> Mail</td><td> {{ data.Email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Telephone</td><td> {{ data.Tel }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Adresse</td><td> {{ data.Adresse }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Ville</td><td> {{ data.Ville }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Horaire</td> <td> de {{ data.horaireDebut|date('h:m') }} Am à {{ data.horaireFin |date('h:m')}} Pm </td>
+                                    </tr>
+                                    </thead>
+                                </table>
+                                <div class="col-md-6 col-sm-12 center-block">
+                                    <li>
+                                        <a href="{{ path('updateLabo') }}" id="index">
+                                            <button  class="btn btn-success form-control">Editer votre profil</button>
+                                        </a>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

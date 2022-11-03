@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 avr. 2021 00:12:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="ehealthv2" name="app.entity.Patient" optimistic-lock="version" table="patient">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="foreign">
+        <param name="property">user</param>
+      </generator>
+    </id>
+    <one-to-one class="app.entity.User" constrained="true" name="user"/>
+    <property name="nom" type="string">
+      <column name="nom" not-null="true"/>
+    </property>
+    <property name="prenom" type="string">
+      <column name="prenom" not-null="true"/>
+    </property>
+    <property name="cin" type="int">
+      <column name="cin" not-null="true"/>
+    </property>
+    <property name="sexe" type="string">
+      <column name="sexe" not-null="true"/>
+    </property>
+    <property name="blocked" type="java.lang.Integer">
+      <column name="blocked"/>
+    </property>
+    <property name="nbAlert" type="java.lang.Integer">
+      <column name="nb_alert"/>
+    </property>
+    <property name="blockedRdv" type="boolean">
+      <column name="blocked_rdv" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="dossierLabs" table="dossier_lab">
+      <key>
+        <column name="patient_id" not-null="true"/>
+      </key>
+      <one-to-many class="app.entity.DossierLab"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="rendezvouses" table="rendezvous">
+      <key>
+        <column name="patient_id" not-null="true"/>
+      </key>
+      <one-to-many class="app.entity.Rendezvous"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="dossiers" table="dossier">
+      <key>
+        <column name="patient_id"/>
+      </key>
+      <one-to-many class="app.entity.Dossier"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="questions" table="question">
+      <key>
+        <column name="patient_id" not-null="true"/>
+      </key>
+      <one-to-many class="app.entity.Question"/>
+    </set>
+  </class>
+</hibernate-mapping>

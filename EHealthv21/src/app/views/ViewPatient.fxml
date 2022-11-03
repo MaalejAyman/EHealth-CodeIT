@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="587.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ViewPatientController">
+  
+    <children>
+      <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="877.0" tabClosingPolicy="UNAVAILABLE">
+      
+          <tabs>
+            <Tab text="Acceuil">
+               <content>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" stylesheets="@../css/viewpatient.css">
+                     <children>
+                        <ImageView fitHeight="617.0" fitWidth="916.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/ehealth1.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="617.0" fitWidth="673.0" layoutX="-97.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                           <image>
+                              <Image url="@../img/téléchargé.jpg" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btn_logout" layoutX="621.0" layoutY="485.0" mnemonicParsing="false" onAction="#logout" prefHeight="49.0" prefWidth="198.0" style="-fx-background-radius: 10; -fx-background-color: #DA4444;" text="Deconnexion" textFill="WHITE" />
+                        <Label layoutX="54.0" layoutY="14.0" prefHeight="35.0" prefWidth="126.0" text="Statistique" textFill="#000000bf">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <BarChart fx:id="barChart" layoutX="43.0" layoutY="49.0" legendVisible="false" prefHeight="280.0" prefWidth="380.0" stylesheets="@../css/viewpatient.css" title="Patients">
+                          <xAxis>
+                            <CategoryAxis fx:id="patientAxis" label="Rendez - Vous" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="RdvAxis" label="Nombre de rendez-vous effectué" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                        <PieChart fx:id="pieChart" layoutX="54.0" layoutY="329.0" prefHeight="244.0" prefWidth="372.0" style="-fx-clockwise: false; -fx-pie-color: black;" stylesheets="@../css/viewpatient.css">
+                           <styleClass>
+                              <String fx:value="default-color1" />
+                              <String fx:value="default-color0" />
+                              <String fx:value="default-color2" />
+                              <String fx:value="default-color3" />
+                           </styleClass></PieChart>
+                        <Line endX="144.0" layoutX="240.0" layoutY="322.0" startX="-117.0" />
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+          <Tab fx:id="tabListePatient" text="Liste des Patients">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <TableView fx:id="table_patient" prefHeight="284.0" prefWidth="874.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="output_email" prefWidth="146.0" text="E-mail" />
+                            <TableColumn fx:id="output_nom" minWidth="8.0" prefWidth="72.0" text="Nom" />
+                              <TableColumn fx:id="output_prenom" minWidth="0.0" prefWidth="77.0" text="Prenom" />
+                              <TableColumn fx:id="output_sexe" prefWidth="70.0" text="Sexe" />
+                              <TableColumn fx:id="output_cin" prefWidth="94.0" text="Cin" />
+                              <TableColumn fx:id="output_adresse" minWidth="0.0" prefWidth="109.0" text="Adresse" />
+                              <TableColumn fx:id="output_ville" prefWidth="95.0" text="Ville" />
+                              <TableColumn fx:id="output_tel" prefWidth="82.0" text="Téléphone" />
+                              <TableColumn fx:id="output_bloque" prefWidth="93.0" text="bloqué" />
+                          </columns>
+                        </TableView>
+                     </top>
+                     <bottom>
+                        <Pane prefHeight="274.0" prefWidth="948.0" style="-fx-background-color: #4ECDC4;" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btn_modif" layoutX="274.0" layoutY="227.0" mnemonicParsing="false" onAction="#UpdatePatient" prefHeight="33.0" prefWidth="552.0" style="-fx-background-radius: 10; -fx-background-color: #059b8e;" text="Modifier" textFill="WHITE" />
+                              <Button fx:id="btn_delete" layoutX="72.0" layoutY="106.0" mnemonicParsing="false" onAction="#DeletePatientC" prefHeight="38.0" prefWidth="149.0" style="-fx-background-radius: 10; -fx-background-color: #DA4444;" text="Supprimer" textFill="WHITE" />
+                              <Button fx:id="btn_block" layoutX="72.0" layoutY="154.0" mnemonicParsing="false" onAction="#bloquerDebloquerPatient" prefHeight="38.0" prefWidth="149.0" style="-fx-background-radius: 10; -fx-background-color: #eaeaea;" text="Bloquer / Débloquer" />
+                              <TextField fx:id="modif_email" layoutX="323.0" layoutY="46.0" prefHeight="25.0" prefWidth="193.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_nom" layoutX="323.0" layoutY="91.0" prefHeight="25.0" prefWidth="192.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_prenom" layoutX="323.0" layoutY="133.0" prefHeight="25.0" prefWidth="192.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_cin" layoutX="605.0" layoutY="180.0" prefHeight="25.0" prefWidth="211.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_adresse" layoutX="607.0" layoutY="45.0" prefHeight="25.0" prefWidth="209.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_tel" layoutX="607.0" layoutY="132.0" prefHeight="25.0" prefWidth="209.0" style="-fx-background-radius: 10;" />
+                              <Label layoutX="258.0" layoutY="50.0" text="E-mail" />
+                              <Label layoutX="261.0" layoutY="95.0" text="Nom" />
+                              <Label layoutX="255.0" layoutY="137.0" text="Prenom" />
+                              <Label layoutX="262.0" layoutY="183.0" text="Sexe" />
+                              <Label layoutX="563.0" layoutY="184.0" text="Cin" />
+                              <ChoiceBox fx:id="modif_sexe" layoutX="323.0" layoutY="179.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-radius: 10;" />
+                              <Label layoutX="551.0" layoutY="49.0" text="Adresse" />
+                              <Label layoutX="558.0" layoutY="86.0" text="Ville" />
+                              <Label layoutX="541.0" layoutY="136.0" text="Telephone" />
+                              <Text layoutX="255.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voici les details de :  ">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="btn_clear" layoutX="72.0" layoutY="207.0" mnemonicParsing="false" onAction="#clear" prefHeight="38.0" prefWidth="149.0" style="-fx-background-radius: 10; -fx-background-color: grey;" text="Vider les champs" textFill="WHITE" />
+                              <Label fx:id="name_user" layoutX="423.0" layoutY="6.0" prefHeight="25.0" prefWidth="314.0" textFill="#da4444">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="modif_ville" layoutX="607.0" layoutY="90.0" prefHeight="25.0" prefWidth="209.0" style="-fx-background-radius: 10;" />
+                              <Button layoutX="72.0" layoutY="55.0" mnemonicParsing="false" onAction="#RedirectToAjoutPatient" prefHeight="38.0" prefWidth="149.0" style="-fx-background-radius: 10; -fx-background-color: #059b8e;" text="Ajouter un Patient" textFill="WHITE" />
+                              <ImageView fitHeight="28.0" fitWidth="36.0" layoutX="20.0" layoutY="16.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true" rotate="-126.9">
+                                 <image>
+                                    <Image url="@../img/refresh.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </bottom>
+                  </BorderPane>
+               </content>
+          </Tab>
+            <Tab fx:id="tablisteMedecin" text="Liste des Medecins">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <TableView fx:id="table_medecin" prefHeight="284.0" prefWidth="841.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="output_emailMed" prefWidth="146.0" text="E-mail" />
+                              <TableColumn fx:id="output_nomMed" minWidth="8.0" prefWidth="72.0" text="Nom" />
+                              <TableColumn fx:id="output_prenomMed" minWidth="0.0" prefWidth="77.0" text="Prenom" />
+                              <TableColumn fx:id="output_sexeMed" prefWidth="70.0" text="Sexe" />
+                              <TableColumn fx:id="output_numSMed" prefWidth="120.0" text="numero de service" />
+                              <TableColumn fx:id="output_adresseMed" minWidth="0.0" prefWidth="83.0" text="Adresse" />
+                              <TableColumn fx:id="output_villeMed" prefWidth="76.0" text="Ville" />
+                              <TableColumn fx:id="output_telMed" prefWidth="76.0" text="Telephone" />
+                              <TableColumn fx:id="output_specialiteMed" prefWidth="120.0" text="Specialité" />
+                           </columns>
+                        </TableView>
+                     </top>
+                     <bottom>
+                        <Pane prefHeight="274.0" prefWidth="841.0" style="-fx-background-color: #4ECDC4;" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btn_modifMed" layoutX="213.0" layoutY="230.0" mnemonicParsing="false" onAction="#UpdateMedecin" prefHeight="33.0" prefWidth="603.0" style="-fx-background-color: #059b8e; -fx-background-radius: 10 10 10 10;" text="Modifier" textFill="WHITE" />
+                              <Button fx:id="btn_deleteMed" layoutX="36.0" layoutY="114.0" mnemonicParsing="false" onAction="#DeleteMedecinC" prefHeight="50.0" prefWidth="144.0" style="-fx-background-color: #DA4444; -fx-background-radius: 10;" text="Supprimer" textFill="WHITE" />
+                              <TextField fx:id="modif_emailMed" layoutX="323.0" layoutY="46.0" prefHeight="25.0" prefWidth="220.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_nomMed" layoutX="323.0" layoutY="85.0" prefHeight="25.0" prefWidth="221.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_prenomMed" layoutX="323.0" layoutY="122.0" prefHeight="25.0" prefWidth="220.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_adresseMed" layoutX="621.0" layoutY="47.0" prefHeight="25.0" prefWidth="205.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_telMed" layoutX="621.0" layoutY="126.0" prefHeight="25.0" prefWidth="205.0" style="-fx-background-radius: 10;" />
+                              <Label layoutX="258.0" layoutY="50.0" text="E-mail" />
+                              <Label layoutX="261.0" layoutY="95.0" text="Nom" />
+                              <Label layoutX="255.0" layoutY="132.0" text="Prenom" />
+                              <Label layoutX="565.0" layoutY="169.0" text="Sexe" />
+                              <ChoiceBox fx:id="modif_sexeMed" layoutX="622.0" layoutY="162.0" prefHeight="25.0" prefWidth="205.0" style="-fx-background-radius: 10;" />
+                              <Label layoutX="565.0" layoutY="53.0" text="Adresse" />
+                              <Label layoutX="572.0" layoutY="91.0" text="Ville" />
+                              <Label layoutX="555.0" layoutY="129.0" text="Telephone" />
+                              <Text layoutX="218.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voici les details du Medecin :  " wrappingWidth="239.84375">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="btn_clearMed" layoutX="36.0" layoutY="179.0" mnemonicParsing="false" onAction="#clearMed" prefHeight="50.0" prefWidth="144.0" style="-fx-background-radius: 10; -fx-background-color: grey;" text="Vider Les champs" textFill="WHITE" />
+                              <Label fx:id="name_Med" layoutX="460.0" layoutY="10.0" prefHeight="25.0" prefWidth="319.0" textFill="#da4444">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="modif_villeMed" layoutX="621.0" layoutY="84.0" prefHeight="25.0" prefWidth="206.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_numServiceMed" layoutX="324.0" layoutY="159.0" prefHeight="25.0" prefWidth="216.0" style="-fx-background-radius: 10;" />
+                              <Label layoutX="216.0" layoutY="169.0" text="Numero de service" />
+                              <Label layoutX="216.0" layoutY="200.0" text="Horaire d'ouverture " />
+                              <TextField fx:id="modif_HoraireOMed" layoutX="325.0" layoutY="195.0" prefHeight="25.0" prefWidth="216.0" style="-fx-background-radius: 10;" />
+                              <Label layoutX="555.0" layoutY="201.0" prefHeight="21.0" prefWidth="61.0" text="Fermeture" />
+                              <TextField fx:id="modif_HoraireFMed" layoutX="624.0" layoutY="198.0" prefHeight="25.0" prefWidth="203.0" style="-fx-background-radius: 10;" />
+                              <Button layoutX="35.0" layoutY="53.0" mnemonicParsing="false" onAction="#RedirectToAjoutMedecin" prefHeight="50.0" prefWidth="144.0" style="-fx-background-radius: 10; -fx-background-color: #059b8e;" text="Ajouter un medecin" textFill="WHITE" />
+                              <ImageView fitHeight="28.0" fitWidth="34.0" layoutX="19.0" layoutY="16.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true" rotate="-120.3">
+                                 <image>
+                                    <Image url="@../img/refresh.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </bottom>
+                  </BorderPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabListeLaboratoire" text="Liste des Laboratoires">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <TableView fx:id="table_laboratoire" prefHeight="284.0" prefWidth="841.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="output_emailLab" prefWidth="146.0" text="E-mail" />
+                              <TableColumn fx:id="output_nomLab" minWidth="8.0" prefWidth="131.0" text="Nom" />
+                              <TableColumn fx:id="output_numServiceLab" prefWidth="153.0" text="Numero de service" />
+                              <TableColumn fx:id="output_adresseLab" minWidth="0.0" prefWidth="107.0" text="Adresse" />
+                              <TableColumn fx:id="output_villeLab" prefWidth="154.0" text="Ville" />
+                              <TableColumn fx:id="output_telLab" prefWidth="145.0" text="Telephone" />
+                           </columns>
+                        </TableView>
+                     </top>
+                     <bottom>
+                        <Pane prefHeight="274.0" prefWidth="841.0" style="-fx-background-color: #4ECDC4;" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btn_modifLab" layoutX="274.0" layoutY="230.0" mnemonicParsing="false" onAction="#UpdateLaboratoire" prefHeight="33.0" prefWidth="544.0" style="-fx-background-radius: 10; -fx-background-color: #059b8e;" text="Modifier" textFill="WHITE" />
+                              <Button fx:id="btn_delete2" layoutX="35.0" layoutY="178.0" mnemonicParsing="false" onAction="#DeleteLabC" prefHeight="40.0" prefWidth="149.0" style="-fx-background-radius: 10; -fx-background-color: #DA4444;" text="Supprimer" textFill="WHITE" />
+                              <TextField fx:id="modif_emailLab" layoutX="300.0" layoutY="46.0" prefHeight="25.0" prefWidth="165.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_nomLab" layoutX="299.0" layoutY="91.0" prefHeight="25.0" prefWidth="165.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_NumServiceLab" layoutX="298.0" layoutY="133.0" prefHeight="25.0" prefWidth="167.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_adresseLab" layoutX="541.0" layoutY="48.0" prefHeight="25.0" prefWidth="268.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="modif_telLab" layoutX="541.0" layoutY="135.0" prefHeight="25.0" prefWidth="272.0" style="-fx-background-radius: 10;" />
+                              <Label layoutX="253.0" layoutY="50.0" text="E-mail" />
+                              <Label layoutX="261.0" layoutY="95.0" text="Nom" />
+                              <Label layoutX="191.0" layoutY="137.0" text="Numero de service" />
+                              <Label layoutX="240.0" layoutY="183.0" text="Services" />
+                              <Label layoutX="473.0" layoutY="183.0" text="Horaire d'ouverture " />
+                              <Label layoutX="485.0" layoutY="52.0" text="Adresse" />
+                              <Label layoutX="492.0" layoutY="89.0" text="Ville" />
+                              <Label layoutX="475.0" layoutY="139.0" text="Telephone" />
+                              <Text layoutX="255.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voici les details du Laboratoire:  ">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="btn_clearLab" layoutX="37.0" layoutY="128.0" mnemonicParsing="false" onAction="#clearLab" prefHeight="43.0" prefWidth="145.0" style="-fx-background-radius: 10; -fx-background-color: grey;" text="Vider Les Champs" textFill="WHITE" />
+                              <Label fx:id="name_Lab" layoutX="505.0" layoutY="5.0" prefHeight="25.0" prefWidth="300.0" textFill="#da4444">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="modif_HoraireOLab" layoutX="586.0" layoutY="179.0" prefHeight="25.0" prefWidth="74.0" style="-fx-background-radius: 10;" />
+                              <Label layoutX="677.0" layoutY="181.0" prefHeight="21.0" prefWidth="61.0" text="Fermeture" />
+                              <TextField fx:id="modif_HoraireFLab" layoutX="741.0" layoutY="179.0" prefHeight="25.0" prefWidth="74.0" style="-fx-background-radius: 10;" />
+                              <ChoiceBox fx:id="modif_villeLab" layoutX="541.0" layoutY="91.0" prefHeight="25.0" prefWidth="269.0" style="-fx-background-radius: 10;" />
+                              <ListView fx:id="modif_Service" layoutX="298.0" layoutY="170.0" prefHeight="46.0" prefWidth="168.0" style="-fx-background-radius: 5;" />
+                              <Button layoutX="37.0" layoutY="76.0" mnemonicParsing="false" onAction="#RedirectToAjoutLab" prefHeight="43.0" prefWidth="145.0" style="-fx-background-radius: 10; -fx-background-color: #059b8e;" text="Ajouter un Laboratoire" textFill="WHITE" />
+                              <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="18.0" layoutY="13.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true" rotate="-133.0">
+                                 <image>
+                                    <Image url="@../img/refresh.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </bottom>
+                  </BorderPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

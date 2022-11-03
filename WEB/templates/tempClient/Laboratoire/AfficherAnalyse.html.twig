@@ -1,0 +1,73 @@
+{% extends 'tempClient/Laboratoire/acceuilLab.html.twig' %}
+{% block content %}
+
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <a href="{{ path('dossier_lab_show') }}" id="index">
+                                        <button class="btn btn-danger btn-sm">
+                                            <i class="fa fa-backward"></i>
+                                        </button>
+                                    </a>
+                                </div>
+
+
+                                    <div class="col-md-11 " style="width: 90%;margin-bottom: 1%">
+
+                                        <a href="{{ path('createAn',{'id':id}) }}" style="width: 100%">
+                                            <button class="btn btn-success " style="width: 100%"> Ajouter
+                                                une
+                                                Analyse
+                                            </button>
+                                        </a>
+
+                                    </div>
+
+                            </div>
+                            <div class="row">
+                            <table class="table center" style="color:black;background-color: white">
+                                <tr>
+                                    <th class="hidden-phone"> Date</th>
+                                    <th> Description</th>
+                                    <th></th>
+                                </tr>
+
+                                <tbody>
+                                {% for i  in liste %}
+                                    <tr>
+                                        <td> {{ i.date|date('Y-m-d h:m') }}</td>
+                                        <td> {{ i.description }}</td>
+                                        <td>
+                                            <a href="{{ path('editAn',{'id':i.id}) }}">
+                                                <button class="btn btn-success btn-xs">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                            </a>
+                                            <a href="{{ path('deleteAn',{'id':i.id}) }}">
+                                                <button class="btn btn-danger btn-xs">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="15">Pas d'analyse</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

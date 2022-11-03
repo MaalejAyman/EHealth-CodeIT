@@ -1,0 +1,43 @@
+{% extends '/tempClient/Medecin/acceuilMed.html.twig' %}
+{% block content %}
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+
+                            <h2> Tous les questions disponibles </h2>
+
+                            <table class="table table-striped table-advance table-hover"
+                                   style="background-color: white">
+
+                                {% for i in list %}
+                                    <tr>
+                                        <td class="text-center text-muted"> {{ i.text }} ?</td>
+                                        <td>
+                                            <a href="{{ path('RepondreQuestion',{'id':i.id}) }}">
+                                                <button class="btn btn-theme start">Repondre</button>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('afficherReponses',{'id':i.id}) }}">
+                                                <button class="btn btn-theme start">Afficher tous les réponses</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+
+                                {% endfor %}
+
+                            </table>
+                            <div class="navigation" style="align-content: center">
+                                {{ knp_pagination_render(list) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

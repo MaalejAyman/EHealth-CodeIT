@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 avr. 2021 00:12:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="ehealthv2" name="app.entity.Event" optimistic-lock="version" table="event">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="app.entity.Laboratoire" fetch="select" name="laboratoire">
+      <column name="laboratoire_id"/>
+    </many-to-one>
+    <many-to-one class="app.entity.Medecin" fetch="select" name="medecin">
+      <column name="medecin_id"/>
+    </many-to-one>
+    <property name="title" type="string">
+      <column name="title" not-null="true"/>
+    </property>
+    <property name="start" type="timestamp">
+      <column length="19" name="start" not-null="true"/>
+    </property>
+    <property name="end" type="timestamp">
+      <column length="19" name="end" not-null="true"/>
+    </property>
+    <property name="description" type="string">
+      <column name="description"/>
+    </property>
+    <property name="dayoff" type="boolean">
+      <column name="dayoff" not-null="true"/>
+    </property>
+    <property name="rendezvous" type="java.lang.Integer">
+      <column name="rendezvous"/>
+    </property>
+  </class>
+</hibernate-mapping>

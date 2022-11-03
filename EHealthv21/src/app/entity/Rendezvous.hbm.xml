@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 avr. 2021 00:12:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="ehealthv2" name="app.entity.Rendezvous" optimistic-lock="version" table="rendezvous">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="app.entity.Laboratoire" fetch="select" name="laboratoire">
+      <column name="laboratoire_id"/>
+    </many-to-one>
+    <many-to-one class="app.entity.Medecin" fetch="select" name="medecin">
+      <column name="medecin_id"/>
+    </many-to-one>
+    <many-to-one class="app.entity.Patient" fetch="select" name="patient">
+      <column name="patient_id" not-null="true"/>
+    </many-to-one>
+    <property name="date" type="date">
+      <column length="10" name="date" not-null="true"/>
+    </property>
+    <property name="heure" type="time">
+      <column length="8" name="heure" not-null="true"/>
+    </property>
+    <property name="etat" type="string">
+      <column name="etat" not-null="true"/>
+    </property>
+    <property name="evaluation" type="java.lang.Integer">
+      <column name="evaluation"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-clockwise: false;
+    -fx-pie-label-visible: true;
+    -fx-label-line-length: 2;
+    -fx-start-angle: 30;
+    -fx-legend-side: right;
+}
+.default-color0.pieChart { -fx-pie-color: #ffd700; }
+.default-color1.pieChart { -fx-pie-color: #ffa500; }
+.default-color2.pieChart { -fx-pie-color: #860061; }
+.default-color3.pieChart { -fx-pie-color: #adff2f; }
+.default-color4.pieChart { -fx-pie-color: #ff5700; }
+.pieChart{
+    
+}  

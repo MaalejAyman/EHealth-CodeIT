@@ -1,0 +1,33 @@
+{% extends '/tempClient/Medecin/acceuilMed.html.twig' %}
+{% block content %}
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                            <h2> Repondre à cette question </h2>
+                            {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                            <table class="table" style="background-color: white ;color: black; border-radius: 3%">
+                                <tr  style="border: 0px">
+                                    <td>
+                                        <h4>Votre Réponse </h4>
+                                        {{ form_errors(form.text) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center text-muted">{{ form_widget(form.text,{'attr':{'class':'form-control'}}) }} </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-lg-10"> {{ form_widget(form.Repondre,{'attr':{'class':'form-control'}}) }} </td>
+                                </tr>
+                            </table>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

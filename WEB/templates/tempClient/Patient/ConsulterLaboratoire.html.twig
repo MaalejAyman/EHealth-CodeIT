@@ -1,0 +1,82 @@
+{% extends 'tempClient/Patient/acceuil.html.twig' %}
+{% block content %}
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                            <h2> {{ laboratoire.nom }}</h2>
+                            <table class="table table-hover" style="background-color: white">
+                                <tr>
+                                    <th class="text-muted">Nom du Laboratoire :</th>
+                                    <td colspan="2" class="text-center text-muted">{{ laboratoire.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Temp de travail :</th>
+                                    <td colspan="2"
+                                        class="text-center text-muted">{{ laboratoire.horaireDebut|date('H:i')~' - '~laboratoire.horaireFin|date('H:i') }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Telephone :</th>
+                                    <td colspan="2" class="text-center text-muted">{{ laboratoire.tel }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Email :</th>
+                                    <td colspan="2" class="text-center text-muted">{{ laboratoire.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Adresse :</th>
+                                    <td colspan="2" class="text-center text-muted">{{ laboratoire.adresse }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Ville :</th>
+                                    <td colspan="2" class="text-center text-muted">{{ laboratoire.ville }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Services :</th>
+                                    <td colspan="1" class="MyUl ">
+                                        <ul>
+                                            {% if laboratoire.services!=null %}
+                                                Service:
+                                                {% for serv in laboratoire.services %}
+
+                                                    <li class="text-center text-muted">{{ serv }}</li>
+
+                                                {% endfor %}
+                                            {% endif %}
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">Evaluation :</th>
+                                    <td colspan="2" class="text-center">
+
+                                        <div class="rating">
+                                            {% for i in 5..1 %}
+                                                {% set starClass = (laboratoire.note >= i ? "img/Ratings/filled.png" : "img/Ratings/empty.png") %}
+                                                <img src="{{ asset( starClass) }}"></img>
+                                            {% endfor %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% if patient.blockedrdv != "1" %}
+                                    <tr>
+                                        <td colspan="3" align="center">
+                                            <a href="{{ path('prendreRendezVousLabo',{'id':laboratoire.id}) }}"
+                                               style="text-decoration: none;">
+                                                <button class="btn btn-theme02 btn-lg ">Prendre Rendez Vous</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block page %}rech{% endblock %}

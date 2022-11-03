@@ -1,0 +1,230 @@
+{% extends 'tempClient/Medecin/acceuilMed.html.twig' %}
+{% block content %}
+    <section id="home">
+        <section class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container" style="height: 100%">
+                            <section class="panel" style="height: 100%;padding-top:5%">
+                                <div class="panel-body" style="height: 100%">
+                                    <div id="calendar" class="has-toolbar"></div>
+                                </div>
+                                <div id="myModal" class="modal">
+                                    <div class="modal-content">
+                                        <span class="close">&times;</span>
+                                        <h2> Prendre Rendez vous</h2>
+                                        <table class="table table-hover" style="background-color: white">
+                                            {{ form_start(form) }}
+                                            <tr>
+                                                <th class="text-muted">
+                                                    {{ form_label(form.title, 'title', { 'label_attr': {'class': 'col-sm-2 col-sm-2 control-label goLeft'} }) }}
+                                                </th>
+                                                <td class="text-center text-muted" id="date">
+                                                    {{ form_widget(form.title,{'attr':{'class':'form-control '}}) }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-muted">
+                                                    {{ form_label(form.description, 'description', { 'label_attr': {'class': 'col-sm-2 col-sm-2 control-label goLeft'} }) }}
+                                                </th>
+                                                <td class="text-center text-muted" id="date">
+                                                    {{ form_widget(form.description,{'attr':{'class':'form-control '}}) }}
+                                                </td>
+                                            </tr>
+                                            <tr style="display: none">
+                                                <th class="text-muted">
+                                                    {{ form_label(form.start, 'start', { 'label_attr': {'class': 'col-sm-2 col-sm-2 control-label goLeft'} }) }}
+                                                </th>
+                                                <td class="text-center text-muted" id="heure">
+                                                    {{ form_widget(form.start,{'attr':{'class':'form-control','readonly':'true'}}) }}
+                                                </td>
+                                            </tr>
+                                            <tr style="display: none">
+                                                <th class="text-muted">
+                                                    {{ form_label(form.end, 'end', { 'label_attr': {'class': 'col-sm-2 col-sm-2 control-label goLeft'} }) }}
+                                                </th>
+                                                <td class="text-center text-muted" id="heure">
+                                                    {{ form_widget(form.end,{'attr':{'class':'form-control','readonly':'true','hidden':'true'}}) }}
+                                                </td>
+                                            </tr>
+                                            <tr style="display: none">
+                                                <th class="text-muted">
+                                                    {{ form_label(form.dayoff, 'dayoff', { 'label_attr': {'class': 'col-sm-2 col-sm-2 control-label goLeft'} }) }}
+                                                </th>
+                                                <td class="text-center text-muted" id="date" >
+                                                    {{ form_widget(form.dayoff,{'attr':{'class':'form-control','readonly':'true'}}) }}
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <th colspan="2" class="text-center text-muted">
+                                                    {{ form_widget(form.ajouter, { 'label': 'Valider Congé' }) }}
+                                                </th>
+                                            </tr>
+                                            {{ form_end(form) }}
+                                        </table>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <div id="hO" hidden>
+        {{ medecin.horaireDebut ? medecin.horaireDebut|date('H:i:s') : '' }}
+    </div>
+    <div id="hF" hidden>
+        {{ medecin.horaireFin ? medecin.horaireFin|date('H:i:s') : '' }}
+    </div>
+    <script>
+        var modal = document.getElementById("myModal");
+        var dayOffInput = document.getElementById('event_dayoff');
+        var span = document.getElementsByClassName("close")[0];
+        var yInput=document.getElementById('event_start_date_year');
+        var moInput=document.getElementById('event_start_date_month');
+        var daInput=document.getElementById('event_start_date_day');
+        var hInput = document.getElementById('event_start_time_hour');
+        var mInput = document.getElementById('event_start_time_minute');
+        var endyInput=document.getElementById('event_end_date_year');
+        var endmoInput=document.getElementById('event_end_date_month');
+        var enddaInput=document.getElementById('event_end_date_day');
+        var endhInput = document.getElementById('event_end_time_hour');
+        var endmInput = document.getElementById('event_end_time_minute');
+        document.addEventListener('DOMContentLoaded', function () {
+            let hO = document.getElementById('hO').innerText.trim();
+            let hF = document.getElementById('hF').innerText.trim();
+            let events = [];
+            let data = JSON.parse({{ data|raw }});
+            let dateS = JSON.parse({{ dateS|raw }});
+            let dateE = JSON.parse({{ dateE|raw }});
+            let RDV = JSON.parse({{ RDV|raw }});
+            $.each(data[0], function (i, obj) {
+                events[i] = {
+                    id: obj.id,
+                    title: obj.title,
+                    start: dateS[obj.id],
+                    end: dateE[obj.id],
+                    allDay: obj.dayoff
+                };
+                if(RDV[0][obj.id]!==null){
+                    id=RDV[0][obj.id];
+                    events[i].url="/Medecin/MiseAJourRendezvous/"+id;
+                }
+            });
+
+            var calendarEl = document.getElementById('calendar');
+            let calendar = new FullCalendar.Calendar(calendarEl,
+                {
+                    initialView: 'dayGridMonth',
+                    locale: 'fr',
+                    timeZone: 'Africa/Tunis',
+                    height: "100%",
+                    contentHeight:"100%",
+                    handleWindowResize: true,
+                    weekends:true,
+                    selectable:true,
+                    headerToolbar:
+                        {
+                            start: 'prev,next today',
+                            center: 'title',
+                            end: 'dayGridMonth,timeGridWeek,timeGridDay'
+                        },
+                    events: events,
+                    dateClick: function(info) {
+                        this.changeView("timeGridDay",info.dateStr)
+                    },
+                    select:function (info){
+                        if(info.end - info.start > 86400000) {
+                            modal.style.display = "block";
+                            for (i = 0; i < 11; i++) {
+                                if (yInput.getElementsByTagName('option').item(i).value == info.start.getFullYear()){
+                                    yInput.getElementsByTagName('option').item(i).selected='selected';
+                                }
+                            }
+                            moInput.getElementsByTagName('option').item(info.start.getMonth()).selected='selected';
+                            daInput.getElementsByTagName('option').item(info.start.getDate()-1).selected='selected';
+                            for (i = 0; i < 11; i++) {
+                                if (endyInput.getElementsByTagName('option').item(i).value == info.end.getFullYear()){
+                                    endyInput.getElementsByTagName('option').item(i).selected='selected';
+                                }
+                            }
+                            endmoInput.getElementsByTagName('option').item(info.end.getMonth()).selected='selected';
+                            enddaInput.getElementsByTagName('option').item(info.end.getDate()-1).selected='selected';
+                            hInput.getElementsByTagName('option').item(info.start.getHours()).selected='selected';
+                            mInput.getElementsByTagName('option').item(info.start.getMinutes()).selected='selected';
+                            endhInput.getElementsByTagName('option').item(info.end.getHours()).selected='selected';
+                            endmInput.getElementsByTagName('option').item(info.end.getMinutes()).selected='selected';
+
+                            dayOffInput.checked = true;}
+                        else if(info.end - info.start < 86400000){
+                                //console.log(info);
+                                modal.style.display = "block";
+                                for (i = 0; i < 11; i++) {
+                                    if (yInput.getElementsByTagName('option').item(i).value == info.start.getFullYear()){
+                                        yInput.getElementsByTagName('option').item(i).selected='selected';
+                                    }
+                                }
+                                moInput.getElementsByTagName('option').item(info.start.getMonth()).selected='selected';
+                                daInput.getElementsByTagName('option').item(info.start.getDate()).selected='selected';
+                                for (i = 0; i < 11; i++) {
+                                    if (endyInput.getElementsByTagName('option').item(i).value == info.end.getFullYear()){
+                                        endyInput.getElementsByTagName('option').item(i).selected='selected';
+                                    }
+                                }
+                                endmoInput.getElementsByTagName('option').item(info.end.getMonth()).selected='selected';
+                                enddaInput.getElementsByTagName('option').item(info.end.getDate()).selected='selected';
+                                hInput.getElementsByTagName('option').item(info.start.getHours()).selected='selected';
+                                mInput.getElementsByTagName('option').item(info.start.getMinutes()).selected='selected';
+                                endhInput.getElementsByTagName('option').item(info.end.getHours()).selected='selected';
+                                endmInput.getElementsByTagName('option').item(info.end.getMinutes()).selected='selected';
+                                dayOffInput.checked = false;
+                            }else if(info.view.type === 'timeGridDay'){
+                                //console.log(info.view.type);
+                                modal.style.display = "block";
+                                for (i = 0; i < 11; i++) {
+                                    if (yInput.getElementsByTagName('option').item(i).value == info.start.getFullYear()){
+                                        yInput.getElementsByTagName('option').item(i).selected='selected';
+                                    }
+                                }
+                                moInput.getElementsByTagName('option').item(info.start.getMonth()).selected='selected';
+                                daInput.getElementsByTagName('option').item(info.start.getDate()).selected='selected';
+                                for (i = 0; i < 11; i++) {
+                                    if (endyInput.getElementsByTagName('option').item(i).value == info.end.getFullYear()){
+                                        endyInput.getElementsByTagName('option').item(i).selected='selected';
+                                    }
+                                }
+                                endmoInput.getElementsByTagName('option').item(info.end.getMonth()).selected='selected';
+                                enddaInput.getElementsByTagName('option').item(info.end.getDate()).selected='selected';
+                                hInput.getElementsByTagName('option').item(info.start.getHours()).selected='selected';
+                                mInput.getElementsByTagName('option').item(info.start.getMinutes()).selected='selected';
+                                endhInput.getElementsByTagName('option').item(info.end.getHours()).selected='selected';
+                                endmInput.getElementsByTagName('option').item(info.end.getMinutes()).selected='selected';
+                                dayOffInput.checked = true;
+                            }
+                    },
+                    views: {
+                        timeGridDay: {
+                            slotDuration: "01:00:00" ,
+                            slotMinTime : hO,
+                            slotMaxTime : hF,
+                            expandRows : true,
+                        }
+                    }
+                });
+            calendar.render();
+        });
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+    </script>
+{% endblock %}
+{% block page %}
+    rendezvous
+{% endblock %}

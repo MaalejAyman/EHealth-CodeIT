@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <title>E-Health</title>
+
+    <!-- Favicons -->
+    <link href="img/favicon.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--external css-->
+    <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+
+    <!-- =======================================================
+      Template Name: Dashio
+      Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+      Author: TemplateMag.com
+      License: https://templatemag.com/license/
+    ======================================================= -->
+</head>
+
+<body>
+<!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+<div id="login-page">
+    <div class="container">
+        <div style="background-color: white;width: 50%">
+            <div class="login-wrap">
+                <h2 class="form-login-heading">S'inscrire</h2>
+
+                <table class="table table-striped form-horizontal" style="margin-top: 1%">
+                    {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                    {% for flashError in app.flashes('verify_email_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                    {% endfor %}
+                    <tr>
+                        <td>{{ form_label(form.email,"E-Mail") }}</td>
+                        <td> {{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}</td>
+                    </tr>
+                    <td>{{ form_errors(form.email) }}</td>
+                    <tr>
+                        <td>{{ form_label(form.plainPassword,"Password") }}</td>
+                        <td>{{ form_widget(form.plainPassword,{'attr':{'class':'col-lg-12'}}) }}</td>
+                    </tr>
+                    <td>{{ form_errors(form.plainPassword) }}</td>
+
+
+                    <tr>
+                        <td>{{ form_label(form.nom,"Nom") }}</td>
+                        <td>{{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}</td>
+                    </tr>
+                    <td>{{ form_errors(form.nom) }}</td>
+                    <tr>
+                        <td>{{ form_label(form.num_service,"Numero de service") }}</td>
+                        <td>{{ form_widget(form.num_service,{'attr':{'class':'form-control'}}) }}</td>
+                    </tr>
+                    <td>{{ form_errors(form.num_service) }}</td>
+                    <tr>
+                        <td>{{ form_label(form.Adresse,"Adresse") }}</td>
+                        <td>{{ form_widget(form.Adresse,{'attr':{'class':'form-control'}}) }}</td>
+                    </tr>
+                    <td>{{ form_errors(form.Adresse) }}</td>
+                    <tr>
+                        <td>{{ form_label(form.Ville,"Ville") }}</td>
+                        <td>{{ form_widget(form.Ville,{'attr':{'class':'form-control'}}) }}</td>
+                    </tr>
+                    <td>{{ form_errors(form.Ville) }}</td>
+                    <tr>
+                        <td>{{ form_label(form.Tel,"Telephone") }}</td>
+                        <td>{{ form_widget(form.Tel,{'attr':{'class':'form-control'}}) }}</td>
+                    </tr>
+                    <td>{{ form_errors(form.Tel) }}</td>
+                    <tr>
+                        <td>{{ form_label(form.horaire_debut,"Horaire d'ouverture") }}</td>
+                        <td>{{ form_widget(form.horaire_debut,{'attr':{'class':'form-control'}}) }}</td>
+                    </tr>
+                    <td>{{ form_errors(form.horaire_debut) }}</td>
+                    <tr>
+                        <td>{{ form_label(form.horaire_fin,"Horaire de fermeture") }}</td>
+                        <td>{{ form_widget(form.horaire_fin,{'attr':{'class':'form-control'}}) }}</td>
+                    </tr>
+                    <td>{{ form_errors(form.horaire_fin) }}</td>
+                    <tr>
+                        <td>{{ form_label(form.services,"Services") }}</td>
+                        <td>{{ form_widget(form.services,{'attr':{'class':'form-control'}}) }}</td>
+                    </tr>
+                    <td>{{ form_errors(form.services) }}</td>
+                    <tr>
+                        <td>{{ form_label(form.agreeTerms,"accepter les termes") }}</td>
+                        <td>{{ form_widget(form.agreeTerms) }}</td>
+                    </tr>
+                    <td>{{ form_errors(form.agreeTerms) }}</td>
+
+                    <tr>
+                        <td>
+                            <button type="submit" class="btn btn-theme04 delete form-control">Register</button>
+                        </td>
+                    </tr>
+                    {{ form_end(form) }}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<!--BACKSTRETCH-->
+<!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+<script type="text/javascript" src="lib/jquery.backstretch.min.js"></script>
+<script>
+    $.backstretch("img/ehealth1.jpg", {
+        speed: 500
+    });
+</script>
+
+</html>
+

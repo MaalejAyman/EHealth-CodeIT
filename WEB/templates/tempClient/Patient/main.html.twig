@@ -1,0 +1,289 @@
+{% extends 'tempClient/Patient/acceuil.html.twig' %}
+{% block content %}
+
+    <section id="home">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row homeCustom">
+                    <div class="caption">
+                        <div class="container">
+                            <div class="col-md-6 col-sm-12">
+                                <h1>Prenez un rendez vous sans aucun effort </h1>
+                                <h3>Vous pouvez consulter les calendrier pour choisir une date de rendez-vous</h3>
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                                <div class="col-sm-12">
+                                    <div class="row" id="Rech">
+                                        {{ form_widget(form.rech,{'attr':{'class':'form-control round-form','placeholder':"Chercher votre docteur ou laboratoires ...",'onkeyup':'RechChanged(this)'}}) }}
+                                    </div>
+                                    <div class="btn-group" style="margin-top: 1%" id="Ville">
+                                        {{ form_widget(form.Ville,{'attr':{'class':'btn btn-theme dropdown-toggle','onchange':'VilleChanged(this)'}}) }}
+                                    </div>
+                                    <div class="btn-group" style="margin-top: 1%">
+                                        <select class="btn btn-theme dropdown-toggle" id="recherche_Type"
+                                                onchange="TypeChanged(this)">
+                                            <option value="">Medecin/Laboratoire</option>
+                                            <option value="Medecin">Medecin</option>
+                                            <option value="Laboratoire">Laboratoire</option>
+                                        </select>
+                                    </div>
+                                    <div class="btn-group" style="margin-top: 1%" id="Spec">
+                                        {{ form_widget(form.Specialite,{'attr':{'class':'btn btn-theme dropdown-toggle','onchange':'SpecChanged(this)'}}) }}
+
+                                    </div>
+                                    <div class="btn-group" style="margin-top: 1%" id="Serv">
+                                        {{ form_widget(form.Service,{'attr':{'class':'btn btn-theme dropdown-toggle','onchange':'ServiceChanged(this)'}}) }}
+                                    </div>
+                                    <div class=" row" style="margin-top: 1%">
+                                        <a id="Rechercher" href="{{ path('Rechercher') }}" style="width: 100%">
+                                            <button class="btn btn-warning btn-lg btn-blo " style="width: 100%" >Chercher</button>
+                                        </a>
+                                    </div>
+
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="caption">
+                <div class="container">
+                    <div class="col-md-12 col-sm-12" style="height: 100%">
+                        <div id="search1" style="height: 100%">
+                            <table class="table table-striped table-advance table-hover"
+                                   style="background-color: white" id="t1">
+                                <thead>
+                                <tr>
+                                    <th class="text-center text-muted">Nom</th>
+                                    <th class="text-center text-muted">Ville</th>
+                                    <th class="text-center text-muted">Contact</th>
+                                    <th class="text-center text-muted">Evaluation</th>
+                                    <th class="text-center text-muted"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% block javascripts %}
+        <script type="application/javascript">
+            var Type = null,
+                Service = null,
+                Recherche = null,
+                Ville = null,
+                Spec = null;
+            document.addEventListener("DOMContentLoaded", function () {
+                $('div#Serv').hide();
+                $('div#Spec').hide();
+                $('table#t1').hide();
+                val = $("div#recherche_Type").value;
+
+                if (val === 'Medecin') {
+                    $('div#Spec').show();
+                    $('div#Serv').hide();
+                }
+                if (val === 'Laboratoire') {
+                    $('div#Serv').show();
+                    $('div#Spec').hide();
+                }
+                if (val === '') {
+                    $('div#Serv').hide();
+                    $('div#Spec').hide();
+                }
+            });
+
+            function TypeChanged(sel) {
+                val = sel.value;
+                Type = sel.value;
+                if (val === 'Medecin') {
+                    $('div#Spec').show();
+                    $('div#Serv').hide();
+                }
+                if (val === 'Laboratoire') {
+                    $('div#Serv').show();
+                    $('div#Spec').hide();
+                }
+                if (val === '') {
+                    $('div#Serv').hide();
+                    $('div#Spec').hide();
+                }
+            }
+
+            function ServiceChanged(sel) {
+                Service = sel.value;
+                Spec = null;
+            }
+
+            function SpecChanged(sel) {
+                Spec = sel.value;
+                Service = null;
+            }
+
+            function RechChanged(sel) {
+                Recherche = sel.value;
+            }
+
+            function VilleChanged(sel) {
+                Ville = sel.value;
+            }
+
+        </script>
+        <script>
+
+            Array.from(document.querySelectorAll('div a#Rechercher')).forEach(function (link) {
+                link.addEventListener('click', onClickLink);
+            });
+
+            async function onClickLink(event) {
+                event.preventDefault();
+                const url = this.href;
+                var body = {
+                    Ville: Ville,
+                    Recherche: Recherche,
+                    Type: Type,
+                    Service: Service,
+                    Spec: Spec
+                }
+                try {
+                    const result = await axios.post(url, body);
+                    const data = result.data;
+                    $('table#t1').show();
+                    $("div#search1 table#t1 tbody").empty();
+                    let data1 = JSON.parse(data);
+                    $.each(data1[0], function (i, obj) {
+                        let nom = "";
+                        let l = "";
+                        if (obj.prenom == null || obj.prenom === '') {
+                            nom = "Laboratoire " + obj.nom;
+                            t = "Laboratoire";
+                        } else {
+                            nom = "Dr " + obj.nom + " " + obj.prenom;
+                            t = "Medecin";
+                        }
+                        let src1 = '/img/Ratings/empty.png',
+                            src2 = '/img/Ratings/empty.png',
+                            src3 = '/img/Ratings/empty.png',
+                            src4 = '/img/Ratings/empty.png',
+                            src5 = '/img/Ratings/empty.png';
+                        if(parseInt(obj.note)>= 1){
+                            src1='/img/Ratings/filled.png';
+                        }
+                        if(parseInt(obj.note)>= 2){
+                            src2='/img/Ratings/filled.png';
+                        }
+                        if(parseInt(obj.note)>= 3){
+                            src3='/img/Ratings/filled.png';
+                        }
+                        if(parseInt(obj.note)>= 4){
+                            src4='/img/Ratings/filled.png';
+                        }
+                        if(parseInt(obj.note)>= 5){
+                            src5='/img/Ratings/filled.png';
+                        }
+                        $("div#search1 table#t1 tbody").append(
+                            '<tr>' +
+                            '<td class="text-center text-muted"> ' + nom+ ' </td>' +
+                            '<td class="text-center text-muted">' + obj.Ville + ' </td>' +
+                            '<td class="text-center text-muted"> ' + obj.Tel +'<br/>'+ obj.email + ' </td>' +
+                            '<td class="text-center text-muted" style="font-size: 0px">'+obj.note+
+                            '<div class="rating" value="'+ obj.note +'">'+
+                            '<img src="'+ src5 +'"></img>'+
+                            '<img src="'+ src4 +'"></img>'+
+                            '<img src="'+ src3 +'"></img>'+
+                            '<img src="'+ src2 +'"></img>'+
+                            '<img src="'+ src1 +'"></img>'+
+                            '</div>'+
+                            '</td>'+
+                            '<td class="text-center"><a href="Consulter' + t + '/' + obj.id + '"><button class="btn btn-theme btn-xs"><i class="fa fa-th-list"></i></button></a></td>' +
+                            '</tr>'
+                        );
+                    });
+                    $.each(data1[1], function (i, obj) {
+                        let nom = "";
+                        let l = "";
+                        if (obj.prenom == null || obj.prenom === '') {
+                            nom = "Laboratoire " + obj.nom;
+                            t = "Laboratoire";
+                        } else {
+                            nom = "Dr " + obj.nom + " " + obj.prenom;
+                            t = "Medecin";
+                        }
+                        let src1 = '/img/Ratings/empty.png',
+                            src2 = '/img/Ratings/empty.png',
+                            src3 = '/img/Ratings/empty.png',
+                            src4 = '/img/Ratings/empty.png',
+                            src5 = '/img/Ratings/empty.png';
+                        if(parseInt(obj.note)>= 1){
+                            src1='/img/Ratings/filled.png';
+                        }
+                        if(parseInt(obj.note)>= 2){
+                            src2='/img/Ratings/filled.png';
+                        }
+                        if(parseInt(obj.note)>= 3){
+                            src3='/img/Ratings/filled.png';
+                        }
+                        if(parseInt(obj.note)>= 4){
+                            src4='/img/Ratings/filled.png';
+                        }
+                        if(parseInt(obj.note)>= 5){
+                            src5='/img/Ratings/filled.png';
+                        }
+                        $("div#search1 table#t1 tbody").append(
+                            '<tr>' +
+                            '<td class="text-center text-muted"> ' + nom + ' </td>' +
+                            '<td class="text-center text-muted">' + obj.Ville + ' </td>' +
+                            '<td class="text-center text-muted"> ' + obj.Tel +'<br/>'+ obj.email + ' </td>' +
+                            '<td class="text-center text-muted" style="font-size: 0px">'+obj.note+
+                            '<div class="rating" value="'+ obj.note +'">'+
+                            '<img src="'+ src5 +'"></img>'+
+                            '<img src="'+ src4 +'"></img>'+
+                            '<img src="'+ src3 +'"></img>'+
+                            '<img src="'+ src2 +'"></img>'+
+                            '<img src="'+ src1 +'"></img>'+
+                            '</div>'+
+                            '</td>'+
+                            '<td class="text-center"><a href="Consulter' + t + '/' + obj.id + '"><button class="btn btn-theme btn-xs"><i class="fa fa-th-list"></i></button></a></td>' +
+                            '</tr>'
+                        );
+                    });
+                } catch (error) {
+                    if (error.response.status === 403) {
+                        window.location = '/login'
+                    }
+                }
+            }
+        </script>
+        <script>
+            const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+            const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
+                    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+            )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+            document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+                const table = th.closest('table');
+                Array.from(table.querySelectorAll('tbody tr:nth-child(n)'))
+                    .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+                    .forEach(tr => $("div#search1 table#t1 tbody").append(tr));
+            })));
+        </script>
+    {% endblock %}
+{% endblock %}
+
+    {% block sidebar %}
+    {% endblock %}
+
+{% block script_sidebar %}
+{% endblock %}
+
+
+
